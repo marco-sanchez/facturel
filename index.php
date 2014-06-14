@@ -1,12 +1,10 @@
 <?php
-session_start();
+if(!isset($_SESSION))
+    session_start();
 ?>
 <!DOCTYPE html>
 <?php
     include("php/server_functions.php");
-    /* if(isset($_SESSION['current_user'])) {
-        validate_loged_user ();
-    }*/
 ?>
 <html>
     <head>
@@ -45,7 +43,7 @@ session_start();
                          $("#btnCloseMB").click();
                      break;
                      default:
-                         // this should be used just for testing purposes
+                         // do nothing
                  }
             });
 
@@ -78,7 +76,7 @@ session_start();
         </div>
         <br>
         <div class="main_foot">
-            Sistema desarrollado y distibuido por: <span class="CreDes"><b>CreDes Empresarial s.r.l.</b></span> | tel: 2-245573 | La Paz - Bolivia
+            Sistema desarrollado y distribuido por: <span class="CreDes"><b>CreDes Empresarial s.r.l.</b></span> | tel: 2-245573 | La Paz - Bolivia
         </div>
     </body>
 </html>

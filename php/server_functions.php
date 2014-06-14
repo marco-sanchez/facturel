@@ -1,4 +1,6 @@
 <?php
+if(!isset($_SESSION))
+    session_start();
 
 if(isset($_POST['login_values'])) {
     validate_user($_POST['login_values'], true);
@@ -6,37 +8,49 @@ if(isset($_POST['login_values'])) {
 
 function validate_user($usr_pass, $login = false){
 
-    $SQL = "SELECT * FROM usuarios WHERE usuario='" . $login? ecrypt($usr_pass['usuario']) : $usr_pass['usuario'] . "' AND password='" . $login? ecrypt($usr_pass['usuario']) : $usr_pass['usuario'] . "'";
+    $SQL = "SELECT * FROM usuarios WHERE usuario='" . ($login? ecrypt($usr_pass['usuario']) : $usr_pass['usuario']) . "' AND password='" . ($login? ecrypt($usr_pass['password']) : $usr_pass['password']) . "'";
     $res = SQL_exec($SQL);
 
     if ($res){
-        $_SESSION["current_user"] = $res;
-       // $login ? redir("/main.php") ;
+        if ($login) {
+            $_SESSION["current_user"] = $res;
+        }
+        session_regenerate_id(true);
+        session_write_close();
         return true;
     } else {
-        echo "false";
-        return false;
+        if ($login)
+            echo "false";
+        else
+            return false;
     }
+}
+
+function verify_usr(){
+    if(isset($_SESSION['current_user'])) {
+        if(!validate_user($_SESSION['current_user']))
+            redir("/index.php");
+
+    } else redir("/index.php");
 }
 
 function openBD()
 {
     // BD en LocalHost
-    if (substr_count($_SERVER['HTTP_HOST'], 'localhost') > 0)
-    {	$Conexion = mysql_connect("localhost","root","sample");
+    if (substr_count($_SERVER['HTTP_HOST'], 'localhost') > 0) {
+    	$Conexion = mysql_connect("localhost","root","sample");
         mysql_select_db("bdfel", $Conexion);
     }
 
     //BD en www.marco-sanchez.com
-    elseif (substr_count($_SERVER['HTTP_HOST'], 'marco-sanchez.com') > 0)
-    {	$Conexion = mysql_connect("localhost","root","sample");
+    elseif (substr_count($_SERVER['HTTP_HOST'], 'marco-sanchez.com') > 0) {
+    	$Conexion = mysql_connect("localhost","root","sample");
         mysql_select_db("bdfel", $Conexion);
     }
 
-    // Si es otro server
-    else
-    {
-        #alert ("ERROR: No hay conexión BD con el sitio ".$_SERVER['HTTP_HOST']);
+    // URL desconocido
+    else {
+        msgJS ("ERROR: No hay conexión BD con el sitio ".$_SERVER['HTTP_HOST']);
         $Conexion = '';
     }
     return $Conexion;
@@ -58,8 +72,11 @@ function SQL_exec($SQL_query)
 }
 
 // Redirecciona con JS /////////////////////////////////////////////////////////////////////
-function redir ($Pag)
-{
-    ?><script>location.href = "<?php echo $Pag;?>"; </script><?php
+function redir ($Pag){
+    ?><script>window.location = '<?php echo $Pag?>';</script><?php
     exit();
+}
+
+function msgJS ($msg){
+    ?><script>alert('<?php echo $msg?>);</script><?php
 }
