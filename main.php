@@ -32,7 +32,13 @@ if(!isset($_SESSION))
 
     <body>
         <div class="cover"></div>
+
+
+
         <div class="top_menu">
+            <span class="usr_name">
+                <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
+            </span>
             <ul>
                 <li><a class="round_border" href="#inicio">Inicio</a></li>
                 <li><a href="#productos">Productos</a></li>
@@ -43,7 +49,8 @@ if(!isset($_SESSION))
         </div>
 
         <div class="left_panel">
-
+            <img src="/img/logo_empresa.png"/>
+            <div class="lp_controls">
         </div>
 
     </body>

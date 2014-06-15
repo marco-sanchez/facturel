@@ -168,6 +168,14 @@ div.messageBox{
 
     -moz-border-radius-topleft: 15px;
     -moz-border-radius-bottomleft: 15px;
+}
 
+.top_menu span.usr_name{
+    position: relative;
+    top: -10px;
+    font-size: 22px;
 
+    }.top_menu span.usr_name:hover{
+        cursor: pointer;
+        color: rgb(255, 165, 0);
 }

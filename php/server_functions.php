@@ -40,6 +40,7 @@ function openBD()
     if (substr_count($_SERVER['HTTP_HOST'], 'localhost') > 0) {
     	$Conexion = mysql_connect("localhost","root","sample");
         mysql_select_db("bdfel", $Conexion);
+        mysql_query("SET NAMES 'utf8'"); //para caracteres especiales del español (áé..ñ..öü)
     }
 
     //BD en www.marco-sanchez.com

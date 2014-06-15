@@ -1,7 +1,12 @@
-.left_panel{
+.left_panel {
     position:absolute;
     left:0;
-    width: 15%;
-    height: 95%;
+    width: 220px;
+    height: 800px;
+   /* background-color: white; /* enable to see div */
+}
+.left_panel .lp_controls{
+    width: 200px;
+    height: 570px;
     background-color: rgba(255, 160, 0, 0.3);
 }
