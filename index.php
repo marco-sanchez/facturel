@@ -53,11 +53,11 @@ if(!isset($_SESSION))
 
     <body>
         <div class="cover"></div>
-        <div class="main_header">
+        <div class="index_header">
             <b>SISTEMA DE FACTURACIÓN ELECTRÓNICA</b>
         </div>
         <br>
-        <div class="main_body">
+        <div class="index_body">
             <table class="login" border="0" align="center">
                 <tr>
                     <td><label>Usuario: <input id="usr" maxlength="20" size="20"/></label></td>
@@ -75,7 +75,7 @@ if(!isset($_SESSION))
             </div>
         </div>
         <br>
-        <div class="main_foot">
+        <div class="index_foot">
             Sistema desarrollado y distribuido por: <span class="CreDes"><b>CreDes Empresarial s.r.l.</b></span> | tel: 2-245573 | La Paz - Bolivia
         </div>
     </body>

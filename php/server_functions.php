@@ -5,13 +5,13 @@ if(!isset($_SESSION))
 if(isset($_POST['login_values'])) {
     validate_user($_POST['login_values'], true);
 }
-
+ 
 function validate_user($usr_pass, $login = false){
 
     $SQL = "SELECT * FROM usuarios WHERE usuario='" . ($login? ecrypt($usr_pass['usuario']) : $usr_pass['usuario']) . "' AND password='" . ($login? ecrypt($usr_pass['password']) : $usr_pass['password']) . "'";
     $res = SQL_exec($SQL);
 
-    if ($res){
+    if ($res && $res['activo']){
         if ($login) {
             $_SESSION["current_user"] = $res;
         }
@@ -28,7 +28,7 @@ function validate_user($usr_pass, $login = false){
 
 function verify_usr(){
     if(isset($_SESSION['current_user'])) {
-        if(!validate_user($_SESSION['current_user']))
+        if(!validate_user($_SESSION['current_user']) || !$_SESSION['current_user']['activo'])
             redir("/index.php");
 
     } else redir("/index.php");

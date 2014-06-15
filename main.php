@@ -11,6 +11,7 @@ if(!isset($_SESSION))
     <head>
         <meta charset="UTF-8"/>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="stylesheet" type="text/css" href="css/top_menu.css">
 
         <!-- Font : Ubuntu Mono from Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
@@ -30,6 +31,14 @@ if(!isset($_SESSION))
     </head>
 
     <body>
-        SITIO MAIN APROBADO
+        <div class="cover"></div>
+        <div class="top_menu">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#reportes">Reportes</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
     </body>
 </html>

@@ -1,0 +1,55 @@
+
+.top_menu {
+    float: right;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+a:link, a:visited {
+    display: block;
+    width: 120px;
+    border: 1px solid rgba(100, 100, 100, 1);
+    background: black;
+    background: -webkit-gradient(linear, left top, left bottom, from(gray), to(black));
+    background: -webkit-linear-gradient(top, gray, black);
+    background: -moz-linear-gradient(top, gray, black);
+    background: -ms-linear-gradient(top, gray, black);
+    background: -o-linear-gradient(top, gray, black);
+
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+
+    color: rgba(255, 255, 255, 1);
+    font-size: 24px;
+    font-family: "Ubuntu Mono", sans-serif;
+    text-decoration: none;
+    vertical-align: middle;
+
+    padding: 9px 18px;
+}
+
+a:hover {
+    background: gray;
+    background: -webkit-gradient(linear, left top, left bottom, from(#B9B6BB), to(black));
+    background: -webkit-linear-gradient(top, #B9B6BB, black);
+    background: -moz-linear-gradient(top, #B9B6BB, black);
+    background: -ms-linear-gradient(top, #B9B6BB, black);
+    background: -o-linear-gradient(top, #B9B6BB, black);
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+a:active {
+    border: 1px solid rgba(255, 255, 255, 1);
+}

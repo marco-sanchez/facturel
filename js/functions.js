@@ -14,7 +14,6 @@ function evalLogin (usr, pass) {
             cache: false,
             data: {"login_values": login_values},
             success: function(resp){
-
                 if (resp=="false") {
                     msgBoxJS("Los datos introducidos no<br>corresponden a un usuario activo.");
                 } else {
