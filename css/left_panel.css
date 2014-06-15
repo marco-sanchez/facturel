@@ -1,0 +1,7 @@
+.left_panel{
+    position:absolute;
+    left:0;
+    width: 15%;
+    height: 95%;
+    background-color: rgba(255, 160, 0, 0.3);
+}

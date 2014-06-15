@@ -1,20 +1,23 @@
 
 .top_menu {
-    float: right;
+    position:absolute;
+    top:0;
+    right:0;
 }
 
-ul {
+.top_menu ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
 
-li {
+.top_menu li {
     float: left;
 }
 
-a:link, a:visited {
+.top_menu a:link,
+.top_menu a:visited {
     display: block;
     width: 120px;
     border: 1px solid rgba(100, 100, 100, 1);
@@ -39,7 +42,7 @@ a:link, a:visited {
     padding: 9px 18px;
 }
 
-a:hover {
+.top_menu a:hover {
     background: gray;
     background: -webkit-gradient(linear, left top, left bottom, from(#B9B6BB), to(black));
     background: -webkit-linear-gradient(top, #B9B6BB, black);
@@ -50,6 +53,6 @@ a:hover {
     cursor: pointer;
 }
 
-a:active {
+.top_menu a:active {
     border: 1px solid rgba(255, 255, 255, 1);
 }
