@@ -37,7 +37,8 @@ if(!isset($_SESSION))
                 <li><a class="round_border" href="#inicio">Inicio</a></li>
                 <li><a href="#productos">Productos</a></li>
                 <li><a href="#reportes">Reportes</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#contacto">Clientes</a></li>
+                <li><a href="#contacto">Ayuda</a></li>
             </ul>
         </div>
 
