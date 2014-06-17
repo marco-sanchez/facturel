@@ -49,8 +49,17 @@ if(!isset($_SESSION))
         </div>
 
         <div class="left_panel">
-            <img src="/img/logo_empresa.png"/>
+            <img src="/img/logo_cedempre.png" width="300"/>
+            <br><br>
             <div class="lp_controls">
+                <ul>
+                    <li><a class="round_border" href="#inicio">Inicio</a></li>
+                    <li><a class="round_border" href="#op1">Opción 1</a></li>
+                    <li><a class="round_border" href="#op2">Opción 2</a></li>
+                    <li><a class="round_border" href="#op3">Opción 3</a></li>
+                    <li><a class="round_border" href="#op4">Opción 4</a></li>
+                </ul>
+            </div>
         </div>
 
     </body>
