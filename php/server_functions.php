@@ -45,7 +45,7 @@ function openBD()
 
     //BD en www.marco-sanchez.com
     elseif (substr_count($_SERVER['HTTP_HOST'], 'marco-sanchez.com') > 0) {
-    	$Conexion = mysql_connect("localhost","root","sample");
+    	$Conexion = mysql_connect("marcosan_bdfel","marcosan","4879907lp");
         mysql_select_db("bdfel", $Conexion);
     }
 
