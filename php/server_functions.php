@@ -2,6 +2,8 @@
 if(!isset($_SESSION))
     session_start();
 
+ob_start();
+
 if(isset($_POST['login_values'])) {
     validate_user($_POST['login_values'], true);
 }
@@ -30,9 +32,9 @@ function validate_user($usr_pass, $login = false){
 function verify_usr(){
     if(isset($_SESSION['current_user'])) {
         if(!validate_user($_SESSION['current_user']) || !$_SESSION['current_user']['activo'])
-            redir("/index.php");
+            redir("index.php");
 
-    } else redir("/index.php");
+    } else redir("index.php");
 }
 
 function openBD()
@@ -45,7 +47,7 @@ function openBD()
     }
 
     //BD en www.marco-sanchez.com
-    elseif (substr_count($_SERVER['HTTP_HOST'], 'marco-sanchez.com') > 0) {
+    elseif (substr_count($_SERVER['HTTP_HOST'], 'marco-sanchez') > 0) {
     	$Conexion = mysql_connect("localhost","marcosan","4879907lp");
         mysql_select_db("marcosan_bdfel", $Conexion);
         mysql_query("SET NAMES 'utf8'"); //para caracteres especiales del español (áé..ñ..öü)

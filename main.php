@@ -1,10 +1,11 @@
 <?php
 if(!isset($_SESSION))
     session_start();
+ob_start();
 ?>
 <!DOCTYPE html>
 <?php
-    include("php/server_functions.php");
+    include (__DIR__."/php/server_functions.php");
     verify_usr();
 ?>
 <html>
@@ -44,7 +45,7 @@ if(!isset($_SESSION))
         </div>
 
         <div class="left_panel">
-            <img src="/img/logo_cedempre.png" width="300"/>
+            <img src="img/logo_cedempre.png" width="300"/>
             <br><br>
             <div class="lp_controls">
                 <ul>

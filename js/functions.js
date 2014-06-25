@@ -9,7 +9,7 @@ function evalLogin (usr, pass) {
         };
 
         $.ajax({
-            url: '../php/server_functions.php',
+            url: 'php/server_functions.php',
             type: 'post',
             cache: false,
             data: {"login_values": login_values},

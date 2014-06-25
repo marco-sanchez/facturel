@@ -1,10 +1,11 @@
 <?php
 if(!isset($_SESSION))
     session_start();
+ob_start();
 ?>
 <!DOCTYPE html>
 <?php
-    include("php/server_functions.php");
+    include (__DIR__."/php/server_functions.php");
 ?>
 <html>
     <head>
