@@ -1,4 +1,14 @@
 
+.top_menu span.usr_name{
+    position: relative;
+    top: -10px;
+    font-size: 22px;
+
+    }.top_menu span.usr_name:hover{
+        cursor: pointer;
+        color: rgb(255, 165, 0);
+}
+
 .top_menu {
     position:absolute;
     top:0;

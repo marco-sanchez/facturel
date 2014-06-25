@@ -9,7 +9,7 @@ if(!isset($_SESSION))
 <html>
     <head>
         <meta charset="UTF-8"/>
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="stylesheet" type="text/css" href="css/_main.css">
 
         <!-- Font : Ubuntu Mono from Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
@@ -46,9 +46,7 @@ if(!isset($_SESSION))
                          // do nothing
                  }
             });
-
         </script
-
     </head>
 
     <body>
@@ -70,13 +68,13 @@ if(!isset($_SESSION))
                 </tr>
             </table>
             <div class="messageBox">
-                <img id='btnCloseMB' src='/img/close.png'> <br>
+                <img id='btnCloseMB' src='img/close.png'> <br>
                 <span class="message"></span>
             </div>
         </div>
         <br>
         <div class="index_foot">
-            Sistema desarrollado y distribuido por: <span class="CreDes"><b>CreDes Empresarial s.r.l.</b></span> | tel: 2-245573 | La Paz - Bolivia
+            Sistema desarrollado y distribuido por: <span class="cedempre"><b>CedEmpre s.r.l.</b></span> | tel: 2-245573 | La Paz - Bolivia
         </div>
     </body>
 </html>

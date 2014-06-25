@@ -9,19 +9,16 @@ if(!isset($_SESSION))
 ?>
 <html>
     <head>
+        <title>FACTUREL</title>
+
         <meta charset="UTF-8"/>
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
-        <link rel="stylesheet" type="text/css" href="css/top_menu.css">
-        <link rel="stylesheet" type="text/css" href="css/left_panel.css">
+
+        <link rel="stylesheet" type="text/css" href="css/_main.css">
 
         <!-- Font : Ubuntu Mono from Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
 
-        <title>FACTUREL</title>
-
-        <script src="js/libraries/jquery-2.1.1.min.js"></script>
-        <script src="js/libraries/crypt.js"></script>
-        <script src="js/functions.js"></script>
+        <script src="js/_main.js"></script>
         <script>
             $(document).ready(function(){
 
@@ -33,17 +30,15 @@ if(!isset($_SESSION))
     <body>
         <div class="cover"></div>
 
-
-
         <div class="top_menu">
             <span class="usr_name">
                 <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
             </span>
             <ul>
-                <li><a class="round_border" href="#inicio">Inicio</a></li>
+                <li><a class="round_left" href="#ventas">Ventas</a></li>
                 <li><a href="#productos">Productos</a></li>
-                <li><a href="#reportes">Reportes</a></li>
                 <li><a href="#contacto">Clientes</a></li>
+                <li><a href="#reportes">Reportes</a></li>
                 <li><a href="#contacto">Ayuda</a></li>
             </ul>
         </div>
@@ -53,11 +48,11 @@ if(!isset($_SESSION))
             <br><br>
             <div class="lp_controls">
                 <ul>
-                    <li><a class="round_border" href="#inicio">Inicio</a></li>
-                    <li><a class="round_border" href="#op1">Opción 1</a></li>
-                    <li><a class="round_border" href="#op2">Opción 2</a></li>
-                    <li><a class="round_border" href="#op3">Opción 3</a></li>
-                    <li><a class="round_border" href="#op4">Opción 4</a></li>
+                    <li><a class="round_left" href="#op1">Opción 1</a></li>
+                    <li><a class="round_left" href="#op2">Opción 2</a></li>
+                    <li><a class="round_left" href="#op3">Opción 3</a></li>
+                    <li><a class="round_left" href="#op4">Opción 4</a></li>
+                    <li><a class="round_left" href="#op5">Opción 5</a></li>
                 </ul>
             </div>
         </div>
