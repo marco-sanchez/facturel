@@ -53,6 +53,13 @@ function openBD()
         mysql_query("SET NAMES 'utf8'"); //para caracteres especiales del español (áé..ñ..öü)
     }
 
+    //BD en www.marco-sanchez.com
+    elseif (substr_count($_SERVER['HTTP_HOST'], '192.168.') > 0) {
+        $Conexion = mysql_connect("localhost","root","sample");
+        mysql_select_db("bdfel", $Conexion);
+        mysql_query("SET NAMES 'utf8'"); //para caracteres especiales del español (áé..ñ..öü)
+    }
+
     // URL desconocido
     else {
         msgJS ("ERROR: No hay conexión BD con el sitio ".$_SERVER['HTTP_HOST']);

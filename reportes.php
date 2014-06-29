@@ -43,10 +43,10 @@ verify_usr();
                 </span>
         <br/><br/>
         <ul>
-            <li><a class="round_left selected" href="">Ventas</a></li>
+            <li><a class="round_left" href="main.php">Ventas</a></li>
             <li><a href="productos.php">Productos</a></li>
             <li><a href="clientes.php">Clientes</a></li>
-            <li><a href="reportes.php">Reportes</a></li>
+            <li><a class="selected" href="reportes.php">Reportes</a></li>
             <li><a href="ayuda.php">Ayuda</a></li>
         </ul>
     </div>

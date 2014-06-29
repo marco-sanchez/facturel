@@ -1,7 +1,5 @@
 
 .top_menu span.usr_name{
-    position: relative;
-    top: -10px;
     font-size: 22px;
 
     }.top_menu span.usr_name:hover{
@@ -10,9 +8,7 @@
 }
 
 .top_menu {
-    position:absolute;
-    top:0;
-    right:0;
+    float: right;
 }
 
 .top_menu ul {
@@ -29,7 +25,7 @@
 .top_menu a:link,
 .top_menu a:visited {
     display: block;
-    width: 120px;
+    /*width: 120px;*/
     border: 1px solid rgba(100, 100, 100, 1);
     background: black;
     background: -webkit-gradient(linear, left top, left bottom, from(gray), to(black));
@@ -44,7 +40,7 @@
     text-shadow: rgba(0,0,0,.4) 0 1px 0;
 
     color: rgba(255, 255, 255, 1);
-    font-size: 24px;
+    font-size: 18px;
     font-family: "Ubuntu Mono", sans-serif;
     text-decoration: none;
     vertical-align: middle;
@@ -52,7 +48,7 @@
     padding: 9px 18px;
 }
 
-.top_menu a:hover {
+.top_menu a:hover , .top_menu a.selected{
     background: gray;
     background: -webkit-gradient(linear, left top, left bottom, from(#B9B6BB), to(black));
     background: -webkit-linear-gradient(top, #B9B6BB, black);
@@ -65,4 +61,15 @@
 
 .top_menu a:active {
     border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.top_menu a.selected{
+    background: gray;
+    background: -webkit-gradient(linear, left top, left bottom, from(#B9B6BB), to(black));
+    background: -webkit-linear-gradient(top, #B9B6BB, black);
+    background: -moz-linear-gradient(top, #B9B6BB, black);
+    background: -ms-linear-gradient(top, #B9B6BB, black);
+    background: -o-linear-gradient(top, #B9B6BB, black);
+    color: white;
+    cursor: pointer;
 }
