@@ -47,7 +47,7 @@ verify_usr();
             <li><a href="productos.php">Productos</a></li>
             <li><a href="clientes.php">Clientes</a></li>
             <li><a href="reportes.php">Reportes</a></li>
-            <li><a class="selected" href="">Ayuda</a></li>
+            <li><a class="round_right selected" href="">Ayuda</a></li>
         </ul>
     </div>
 </div>
