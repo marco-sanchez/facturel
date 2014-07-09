@@ -24,7 +24,26 @@ verify_usr();
         $(document).ready(function(){
             $(".usr_name").click(function(){
                 window.location = 'usuario.php';
+            });
+            $("a.left_panel_option").click(function(){
+                $("a.left_panel_option").each(function() {
+                    $(this).removeClass("lp_selected")
+                });
+                $(this).addClass("lp_selected")
             })
+
+            $("#usr_edit").click(function(){ //habilitando campos para edición
+                $("#usr_activo").prop('disabled', false);
+                $("#usr_grupo").prop('disabled', false);
+                $("#usr_nombres").prop('disabled', false);
+                $("#usr_apPat").prop('disabled', false);
+                $("#usr_apMat").prop('disabled', false);
+                $("#usr_id").prop('disabled', false);
+                $("#usr_tels").prop('disabled', false);
+                $("#usr_email").prop('disabled', false);
+                $("#usr_dir").prop('disabled', false);
+                $("#usr_coms").prop('disabled', false);
+            });
         });
     </script
 
@@ -55,42 +74,39 @@ verify_usr();
     <div class="left_panel">
         <div class="lp_controls">
             <ul>
-                <li><a class="round_left" href="#op1">Opción 1</a></li>
-                <li><a class="round_left" href="#op2">Opción 2</a></li>
-                <li><a class="round_left" href="#op3">Opción 3</a></li>
-                <li><a class="round_left" href="#op4">Opción 4</a></li>
-                <li><a class="round_left" href="#op5">Opción 5</a></li>
+                <li><a class="round_left left_panel_option" id="usr_edit" href="#op1">Editar</a></li>
+                <li><a class="round_left left_panel_option" id="usr_pass" href="#op2">Cambiar Usr|Pass</a></li>
             </ul>
         </div>
     </div>
     <div class="content">
         <table class="" border="0" align="center">
             <tr>
-                <td align="right"><input type="checkbox"/> Activo</td>
-                <td align="left">Grupo
-                        <select id="usr_grupo">
-                            <option>Opción 1</option>
-                            <option>Opción 2</option>
-                            <option>Opción 3</option>
-                            <option>Opción 4</option>
-                        </select>
+                <td align="left"><input type="checkbox" id="usr_activo" disabled="disabled"/> Activo
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                Grupo <select id="usr_grupo" disabled="disabled">
+                    <option>Opción 1</option>
+                    <option>Opción Opción Opción 2</option>
+                    <option>Opción 3</option>
+                    <option>Opción 4</option>
+                </select>
             </tr>
 
             <tr>
                 <td align="left">
-                    Nombres<br/><input id="usr_nombres" maxlength="20" size="20"/><br/><br/>
-                    Apellido Paterno<br/><input id="usr_apPat" maxlength="20" size="20"/><br/><br/>
-                    Apellido Materno<br/><input id="usr_apMat" maxlength="20" size="20"/><br/><br/>
-                    Doc ID<br/><input id="usr_nombres" maxlength="20" size="20"/>
+                    Nombres<br/><input id="usr_nombres" maxlength="20" size="20" disabled="disabled"/><br/><br/>
+                    Apellido Paterno<br/><input id="usr_apPat" maxlength="20" size="20" disabled="disabled"/><br/><br/>
+                    Apellido Materno<br/><input id="usr_apMat" maxlength="20" size="20" disabled="disabled"/><br/><br/>
+                    Doc ID<br/><input id="usr_id" maxlength="20" size="20" disabled="disabled"/>
                 </td>
                 <td align="left">
-                    Teléfonos<br/><input id="usr_apPat" maxlength="20" size="20"/><br/><br/>
-                    e-mail<br/><input id="usr_apMat" maxlength="20" size="20"/><br/><br/>
-                    Dirección<br/><textarea cols="24" rows="4"></textarea>
+                    Teléfonos<br/><input id="usr_tels" maxlength="20" size="20" disabled="disabled"/><br/><br/>
+                    e-mail<br/><input id="usr_email" maxlength="20" size="20" disabled="disabled"/><br/><br/>
+                    Dirección<br/><textarea id="usr_dir" cols="24" rows="4" disabled="disabled"></textarea>
                 </td>
             </tr>
 
-            <tr><td align="left" colspan="2">Comentarios<br/><textarea cols="52" rows="5"></textarea></td><tr>
+            <tr><td align="center" colspan="2">Comentarios<br/><textarea id="usr_coms" cols="40" rows="5" disabled="disabled"></textarea></td><tr>
 
         </table>
     </div>

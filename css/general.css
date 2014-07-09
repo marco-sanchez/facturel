@@ -61,7 +61,6 @@ div.logo_img{
 }
 
 button {
-
     border: 1px solid #696969;
     background: #000000;
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#696969), to(#000000)); /* Safari 4-5, Chrome 1-9 */
@@ -83,7 +82,7 @@ button {
     text-decoration: none;
     vertical-align: middle;
 
-} button:hover {
+    } button:hover {
       background: #696969;
       background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#696969)); /* Safari 4-5, Chrome 1-9 */
       background: -webkit-linear-gradient(top, #000000, #696969); /* Safari 5.1, Chrome 10+ */
@@ -92,7 +91,7 @@ button {
       background: -o-linear-gradient(top, #000000, #696969); /* Opera 11.10+ */
       cursor: pointer;
 
-  } button:active {
+    } button:active {
         border: 1px solid white;
         /*color: rgba(0, 255, 0, 1);
         text-shadow: #000000 0 1px 0;*/
@@ -106,6 +105,10 @@ th, td {
 select {
     font-family: 'Ubuntu Mono',sans-serif;
     font-size: 18px;
+    border: 1px solid;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 input {
@@ -113,6 +116,11 @@ input {
     font-size: 28px;
     color: #000000;
     padding-left: 10px;
+
+    border: 1px solid #000000;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 input[type=checkbox]{
@@ -122,12 +130,22 @@ input[type=checkbox]{
     -webkit-transform: scale(1.5); /* Safari and Chrome */
     -o-transform: scale(1.5); /* Opera */
     padding: 10px;
+
+    border: 1px solid #000000;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 
 textarea {
     font-family: 'Ubuntu Mono',sans-serif;
     font-size: 24px;
     resize: none;
+
+    border: 1px solid #000000;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 
 span.cedempre {
