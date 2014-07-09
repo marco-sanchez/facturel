@@ -66,19 +66,30 @@ verify_usr();
     </div>
 
     <div class="content">
-        CONTENIDO DEL SITIO<br/>
-        <br/><br/><br/><br/><br/>
-        CONTENIDO DEL SITIO<br/>
-        <br/><br/><br/><br/><br/>
-        CONTENIDO DEL SITIO<br/>
-        <br/><br/><br/><br/><br/>
-        CONTENIDO DEL SITIO<br/>
-        <br/><br/><br/><br/><br/>
-        CONTENIDO DEL SITIO<br/>
-        <br/><br/><br/><br/><br/>
-        CONTENIDO DEL SITIO<br/>
-        <br/><br/><br/><br/><br/>
-        CONTENIDO DEL SITIO<br/>
+        <table class="" border="0" align="center">
+            <tr>
+                <td align="center">Activo <input type="checkbox"/></td>
+                <td align="left">Grupo
+                        <select id="usr_grupo">
+                            <option>Opcion 1</option>
+                            <option>Opcion 2</option>
+                            <option>Opcion 3</option>
+                            <option>Opcion 4</option>
+                        </select>
+            </tr>
+            <tr><td><br/><br/></td></tr>
+            <tr><td align="right">Nombres</td><td align="left"><input id="usr_nombres" maxlength="20" size="20"/><br/></td></tr>
+            <tr><td align="right">Apellido Paterno</td><td align="left"><input id="usr_apPat" maxlength="20" size="20"/><br/></td></tr>
+            <tr><td align="right">Apellido Materno</td><td align="left"><input id="usr_apMat" maxlength="20" size="20"/><br/><br/></td></tr>
+
+            <tr><td align="right">Doc ID</td><td align="left"><input id="usr_apMat" maxlength="20" size="20"/><br/></td></tr>
+            <tr><td align="right">Teléfonos</td><td align="left"><input id="usr_apPat" maxlength="20" size="20"/><br/></td></tr>
+            <tr><td align="right">e-mail</td><td align="left"><input id="usr_apPat" maxlength="20" size="20"/><br/></td></tr>
+            <tr><td align="right">Dirección</td><td align="left"><textarea></textarea><br/><br/></td></tr>
+
+            <tr><td align="right">Comentarios</td><td align="left"><textarea></textarea></td><tr>
+
+        </table>
     </div>
 </div>
 </body>
