@@ -51,7 +51,6 @@ verify_usr();
         </ul>
     </div>
 </div>
-
 <div class="central">
     <div class="left_panel">
         <div class="lp_controls">
@@ -64,30 +63,34 @@ verify_usr();
             </ul>
         </div>
     </div>
-
     <div class="content">
         <table class="" border="0" align="center">
             <tr>
-                <td align="center">Activo <input type="checkbox"/></td>
+                <td align="right"><input type="checkbox"/> Activo</td>
                 <td align="left">Grupo
                         <select id="usr_grupo">
-                            <option>Opcion 1</option>
-                            <option>Opcion 2</option>
-                            <option>Opcion 3</option>
-                            <option>Opcion 4</option>
+                            <option>Opción 1</option>
+                            <option>Opción 2</option>
+                            <option>Opción 3</option>
+                            <option>Opción 4</option>
                         </select>
             </tr>
-            <tr><td><br/><br/></td></tr>
-            <tr><td align="right">Nombres</td><td align="left"><input id="usr_nombres" maxlength="20" size="20"/><br/></td></tr>
-            <tr><td align="right">Apellido Paterno</td><td align="left"><input id="usr_apPat" maxlength="20" size="20"/><br/></td></tr>
-            <tr><td align="right">Apellido Materno</td><td align="left"><input id="usr_apMat" maxlength="20" size="20"/><br/><br/></td></tr>
 
-            <tr><td align="right">Doc ID</td><td align="left"><input id="usr_apMat" maxlength="20" size="20"/><br/></td></tr>
-            <tr><td align="right">Teléfonos</td><td align="left"><input id="usr_apPat" maxlength="20" size="20"/><br/></td></tr>
-            <tr><td align="right">e-mail</td><td align="left"><input id="usr_apPat" maxlength="20" size="20"/><br/></td></tr>
-            <tr><td align="right">Dirección</td><td align="left"><textarea></textarea><br/><br/></td></tr>
+            <tr>
+                <td align="left">
+                    Nombres<br/><input id="usr_nombres" maxlength="20" size="20"/><br/><br/>
+                    Apellido Paterno<br/><input id="usr_apPat" maxlength="20" size="20"/><br/><br/>
+                    Apellido Materno<br/><input id="usr_apMat" maxlength="20" size="20"/><br/><br/>
+                    Doc ID<br/><input id="usr_nombres" maxlength="20" size="20"/>
+                </td>
+                <td align="left">
+                    Teléfonos<br/><input id="usr_apPat" maxlength="20" size="20"/><br/><br/>
+                    e-mail<br/><input id="usr_apMat" maxlength="20" size="20"/><br/><br/>
+                    Dirección<br/><textarea cols="24" rows="4"></textarea>
+                </td>
+            </tr>
 
-            <tr><td align="right">Comentarios</td><td align="left"><textarea></textarea></td><tr>
+            <tr><td align="left" colspan="2">Comentarios<br/><textarea cols="52" rows="5"></textarea></td><tr>
 
         </table>
     </div>

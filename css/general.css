@@ -28,18 +28,30 @@ div {
     padding: 10px;
 
     text-align: center;
+
+    vertical-align: top;
 }
 div.top{
     height: 100px;
 }
+div.central{
+    position: relative;
+    top:30px;
+    height: 80%;
+}
+
 div.content{
     position: absolute;
     right: 1%;
     width: 80%;
-    height: 80%;
+    height: 95%;
     overflow:auto;
-    /*background-color: yellow;
-    color: blue;*/
+    padding: 10px;
+
+    background-color: rgb(20,20,20);
+    -webkit-box-shadow: 0 0 5px 5px rgb(0,0,0);
+    -moz-box-shadow: 0 0 5px 5px rgb(0,0,0);
+    box-shadow: 0 0 5px 5px rgb(0,0,0);
 }
 
 div.logo_img{
@@ -86,6 +98,16 @@ button {
         text-shadow: #000000 0 1px 0;*/
 }
 
+th, td {
+    vertical-align: top;
+    padding: 10px;
+}
+
+select {
+    font-family: 'Ubuntu Mono',sans-serif;
+    font-size: 18px;
+}
+
 input {
     font-family: 'Ubuntu Mono',sans-serif;
     font-size: 28px;
@@ -103,10 +125,9 @@ input[type=checkbox]{
 }
 
 textarea {
-    width: 300px;
-    height: 100px;
     font-family: 'Ubuntu Mono',sans-serif;
     font-size: 24px;
+    resize: none;
 }
 
 span.cedempre {
