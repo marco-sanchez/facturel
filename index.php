@@ -42,6 +42,7 @@ ob_start();
                      break;
                      case 27:
                          $("#btnCloseMB").click();
+                         $("#usr").focus();
                      break;
                      default:
                          // do nothing

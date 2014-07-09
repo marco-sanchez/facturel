@@ -4,7 +4,7 @@
 
     }.top_menu span.usr_name:hover{
         cursor: pointer;
-        color: rgb(255, 165, 0);
+        color: rgba(255, 200, 0, 1)
 }
 
 .top_menu {
