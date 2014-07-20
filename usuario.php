@@ -43,6 +43,7 @@ verify_usr();
                 $("#usr_email").prop('disabled', false);
                 $("#usr_dir").prop('disabled', false);
                 $("#usr_coms").prop('disabled', false);
+                $("#btnUsrChanges").prop('visibility', '');
             });
         });
     </script
@@ -105,9 +106,8 @@ verify_usr();
                     Dirección<br/><textarea id="usr_dir" cols="24" rows="4" disabled="disabled"></textarea>
                 </td>
             </tr>
-
             <tr><td align="center" colspan="2">Comentarios<br/><textarea id="usr_coms" cols="40" rows="5" disabled="disabled"></textarea></td><tr>
-
+            <tr><td align="center" colspan="2"><button id="btnUsrChanges" style="visibility: hidden">Guardar</button></textarea></td><tr>
         </table>
     </div>
 </div>
