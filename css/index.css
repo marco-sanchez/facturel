@@ -2,15 +2,19 @@
 
 div.index_header {
     text-shadow: 2px 2px 1px rgba(50, 50, 50, 1);
+    /*background-color: rgba(50, 50, 50, 0.6);*/
 }
 
 div.index_body {
     height: 70%;
+    /*background-color: rgba(50, 50, 50, 0.6);*/
 }
 
 div.index_foot {
     text-shadow: 2px 2px 1px rgba(50, 50, 50, 1);
     font-size: 22px;
+
+    /*background-color: rgba(50, 50, 50, 0.6);*/
 }
 
 div.index_body table.login {

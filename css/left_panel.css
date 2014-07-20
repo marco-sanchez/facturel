@@ -2,9 +2,8 @@
     position:absolute;
     left:1%;
     width: 15%;
-    height: 95%;
-    background-color: rgb(100, 80, 0);
-    padding: 0;
+    height: 80%;
+    background-color: rgba(255, 160, 0, 0.3);;
 }
 .left_panel .lp_controls{
     /*width: 20%;*/
@@ -18,25 +17,23 @@
     padding: 0;
     /*width: 200px;*/
     font-family: Arial, sans-serif;
-    font-size: 18px;
+    font-size: 11pt;
 }
 
 .left_panel .lp_controls ul li{
-    font-family: 'Ubuntu Mono',sans-serif;
-    font-size: 18px;
     text-align: right;
     margin-bottom: 20px;
 }
 
 .left_panel .lp_controls ul li a{
-    color: #ffffff;
+    color: #ccc;
     text-decoration: none;
     display: block;
-    padding: 5px;
+    padding: 10px 10px 10px 20px;
 }
 
-.left_panel .lp_controls ul li a:hover, .lp_selected{
+.left_panel .lp_controls ul li a:hover{
     background: #000;
     border-left: 10px solid #333;
-    color: #ffffff;
+    color: #fff;
 }
