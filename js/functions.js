@@ -29,3 +29,13 @@ function msgBoxJS(msg){
     $(".cover").show();
     $(".messageBox").show();
 }
+
+function leftPanSel (elemento){
+    if ($(elemento).hasClass("selected")){
+        $(elemento).removeClass("selected");
+    }
+    else {
+        $(".lp_controls ul li a").removeClass("selected");
+        $(elemento).addClass("selected");
+    }
+}

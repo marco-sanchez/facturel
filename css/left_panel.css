@@ -2,20 +2,19 @@
     position:absolute;
     left:1%;
     width: 15%;
-    height: 95%;
-    background-color: rgb(100, 80, 0);;
-}
-.left_panel .lp_controls{
-    /*width: 20%;*/
-    /*height: 90%;*/
-    /*background-color: rgba(255, 160, 0, 0.3);*/
+    height: 100%;
+/*    background-color: #965b00;*/
+    padding: 0;
 }
 
 .left_panel .lp_controls ul{
+    position:absolute;
+    right:0;
+    width: 95%;
+
     list-style-type: none;
     margin: 0;
     padding: 0;
-    /*width: 200px;*/
     font-family: Arial, sans-serif;
     font-size: 11pt;
 }
@@ -24,18 +23,26 @@
     font-family: 'Ubuntu Mono',sans-serif;
     font-size: 18px;
     text-align: right;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .left_panel .lp_controls ul li a{
-    color: #ccc;
-    text-decoration: none;
     display: block;
     padding: 10px 10px 10px 20px;
+
+    color: white;
+    border-left: 5px solid gray;
+
+    background: black;
+
+    text-decoration: none;
 }
 
 .left_panel .lp_controls ul li a:hover{
-    background: #000;
-    border-left: 10px solid #333;
-    color: #fff;
+    color: orange;
+}
+
+.left_panel .lp_controls ul li a.selected{
+    color: orange;
+    border-left: 20px solid orange;
 }

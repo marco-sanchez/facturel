@@ -1,17 +1,27 @@
-
-.top_menu span.usr_name{
-    font-size: 22px;
-
-    }.top_menu span.usr_name:hover{
-        cursor: pointer;
-        color: rgba(255, 200, 0, 1)
-}
-
 .top_menu {
     float: right;
 }
 
+.top_menu .top_container {
+    position: absolute;
+    right: 1.5%;
+}
+
+.top_menu .usr_name{
+    font-size: 22px;
+    }.top_menu .usr_name:hover{
+        cursor: pointer;
+        color: orange;
+}
+
+.top_menu .opt_button {
+    font-size: 14px;
+    padding: 5px 10px 5px 10px;
+}
+
 .top_menu ul {
+    position: absolute;
+    right: 1.5%;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -26,7 +36,7 @@
 .top_menu a:visited {
     display: block;
     /*width: 120px;*/
-    border: 1px solid rgba(100, 100, 100, 1);
+    border: 1px solid gray;
     background: black;
     background: -webkit-gradient(linear, left top, left bottom, from(gray), to(black));
     background: -webkit-linear-gradient(top, gray, black);
@@ -34,12 +44,7 @@
     background: -ms-linear-gradient(top, gray, black);
     background: -o-linear-gradient(top, gray, black);
 
-    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-    box-shadow: rgba(0,0,0,1) 0 1px 0;
-    text-shadow: rgba(0,0,0,.4) 0 1px 0;
-
-    color: rgba(255, 200, 0, 1);
+    color: white;
     font-size: 18px;
     font-family: "Ubuntu Mono", sans-serif;
     text-decoration: none;
@@ -49,27 +54,44 @@
 }
 
 .top_menu a:hover , .top_menu a.selected{
-    background: gray;
-    background: -webkit-gradient(linear, left top, left bottom, from(#B9B6BB), to(black));
-    background: -webkit-linear-gradient(top, #B9B6BB, black);
-    background: -moz-linear-gradient(top, #B9B6BB, black);
-    background: -ms-linear-gradient(top, #B9B6BB, black);
-    background: -o-linear-gradient(top, #B9B6BB, black);
-    color: rgba(255, 255, 255, 1);
+    color: orange;
     cursor: pointer;
 }
 
 .top_menu a:active {
-    border: 1px solid rgba(255, 255, 255, 1);
+    border: 1px solid orange;
+
+    background: gray;
+    background: -webkit-gradient(linear, left top, left bottom, from(black), to(gray));
+    background: -webkit-linear-gradient(top, black, gray);
+    background: -moz-linear-gradient(top, black, gray);
+    background: -ms-linear-gradient(top, black, gray);
+    background: -o-linear-gradient(top, black, gray);
 }
 
 .top_menu a.selected{
-    background: gray;
-    background: -webkit-gradient(linear, left top, left bottom, from(#B9B6BB), to(black));
-    background: -webkit-linear-gradient(top, #B9B6BB, black);
-    background: -moz-linear-gradient(top, #B9B6BB, black);
-    background: -ms-linear-gradient(top, #B9B6BB, black);
-    background: -o-linear-gradient(top, #B9B6BB, black);
-    color: white;
+    border-color: orange;
+    color: orange;
     cursor: pointer;
 }
+
+.top_menu span.selfTitle {
+    position:absolute;
+    left: 22%;
+    top: 127px;
+    color: black;
+    padding: 0 10px;
+
+    background-color: lightgray;
+    -webkit-box-shadow: 0 0 5px 5px black;
+    -moz-box-shadow: 0 0 5px 5px black;
+    box-shadow: 0 0 5px 5px black;
+
+    /*round corners*/
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+
+    z-index: 100;
+}
+

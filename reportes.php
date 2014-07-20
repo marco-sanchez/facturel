@@ -24,9 +24,28 @@ verify_usr();
         $(document).ready(function(){
             $(".usr_name").click(function(){
                 window.location = 'usuario.php';
+            });
+
+            $("#ayuda").click(function(){
+
+            });
+            $("#salir").click(function(){
+                //Setting exp. date of "PHP session cookie" to year zero
+                document.cookie = 'PHPSESSID=; expires=Mon, 01-Jan-00 00:00:01 GMT;';
+                window.location = 'index.php';
+            });
+
+            $(".lp_controls ul li a").click(function() {
+                if ($(this).hasClass("selected")){
+                    $(this).removeClass("selected");
+                }
+                else {
+                    $(".lp_controls ul li a").removeClass("selected");
+                    $(this).addClass("selected");
+                }
             })
         });
-    </script
+    </script>
 
 </head>
 
@@ -38,16 +57,21 @@ verify_usr();
         <img src="img/logo_cedempre.png" width="200"/>
     </div>
     <div class="top_menu">
-                <span class="usr_name">
-                    <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
-                </span>
+        <span class="top_container">
+            <span class="usr_name">
+                <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
+            </span>
+            &nbsp;&nbsp;
+            <button class="opt_button">Ayuda</button>
+            <button class="opt_button">Salir</button>
+        </span>
+
         <br/><br/>
         <ul>
             <li><a class="round_left" href="main.php">Ventas</a></li>
             <li><a href="productos.php">Productos</a></li>
             <li><a href="clientes.php">Clientes</a></li>
-            <li><a class="selected" href="reportes.php">Reportes</a></li>
-            <li><a class="round_right" href="ayuda.php">Ayuda</a></li>
+            <li><a class="round_right selected" href="">Reportes</a></li>
         </ul>
     </div>
 </div>

@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+.usr_field:disabled{
+    background-color: lightgrey;
+    color: black;
+}
+
+button.usr_field {
+    display: none;
+}
+
+.usr_data_table td{
+    padding:0;
+}

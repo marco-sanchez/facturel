@@ -60,10 +60,10 @@ ob_start();
         <div class="index_body">
             <table class="login" border="0" align="center">
                 <tr>
-                    <td><label>Usuario: <input id="usr" maxlength="20" size="20"/></label></td>
+                    <td align="left"><label>Usuario<br/><input id="usr" maxlength="20" size="20"/></label></td>
                 </tr>
                 <tr>
-                    <td><label>Contraseña: <input id="pass" maxlength="17" size="17" type="password"></label></td>
+                    <td align="left"><label>Contraseña<br/><input id="pass" maxlength="20" size="20" type="password"></label></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center"><button id="btnLogin">Ingresar</button></td>

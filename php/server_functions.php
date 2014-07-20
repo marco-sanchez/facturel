@@ -7,7 +7,7 @@ ob_start();
 if(isset($_POST['login_values'])) {
     validate_user($_POST['login_values'], true);
 }
- 
+
 function validate_user($usr_pass, $login = false){
 
     $SQL = "SELECT * FROM usuarios WHERE usuario='" . ($login? ecrypt($usr_pass['usuario']) : $usr_pass['usuario']) . "' AND password='" . ($login? ecrypt($usr_pass['password']) : $usr_pass['password']) . "'";

@@ -24,9 +24,31 @@ verify_usr();
         $(document).ready(function(){
             $(".usr_name").click(function(){
                 window.location = 'usuario.php';
-            })
+            });
+
+            $("#salir").click(function(){
+                //Setting exp. date of "PHP session cookie" to year zero
+                document.cookie = 'PHPSESSID=; expires=Mon, 01-Jan-00 00:00:01 GMT;';
+                window.location = 'index.php';
+            });
+
+            selfActions();
         });
-    </script
+
+        function selfActions(){
+            $("#editar").click(function(){
+                leftPanSel($(this));
+                /*$('#usr_field').attr('disabled', 'disabled'); //Disable*/
+                $('.usr_field').removeAttr('disabled'); //Enable
+                $("button.usr_field").show();
+            });
+
+            $("#pass").click(function(){
+                leftPanSel($(this));
+            })
+        }
+
+    </script>
 
 </head>
 
@@ -38,61 +60,71 @@ verify_usr();
         <img src="img/logo_cedempre.png" width="200"/>
     </div>
     <div class="top_menu">
-                <span class="usr_name">
-                    <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
-                </span>
+        <span class="top_container">
+            <span class="usr_name">
+                <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
+            </span>
+            &nbsp;&nbsp;
+            <button class="opt_button">Ayuda</button>
+            <button class="opt_button">Salir</button>
+        </span>
+
         <br/><br/>
         <ul>
             <li><a class="round_left" href="main.php">Ventas</a></li>
             <li><a href="productos.php">Productos</a></li>
             <li><a href="clientes.php">Clientes</a></li>
-            <li><a href="reportes.php">Reportes</a></li>
-            <li><a class="round_right" href="ayuda.php">Ayuda</a></li>
+            <li><a class="round_right" href="reportes.php">Reportes</a></li>
         </ul>
+        <span class="selfTitle">DATOS USUARIO</span><br/><br/>
     </div>
+
 </div>
 <div class="central">
     <div class="left_panel">
         <div class="lp_controls">
             <ul>
-                <li><a class="round_left" href="#op1">Opción 1</a></li>
-                <li><a class="round_left" href="#op2">Opción 2</a></li>
-                <li><a class="round_left" href="#op3">Opción 3</a></li>
-                <li><a class="round_left" href="#op4">Opción 4</a></li>
-                <li><a class="round_left" href="#op5">Opción 5</a></li>
+                <li><a class="round_left" id="editar">Editar Datos</a></li>
+                <li><a class="round_left" id="pass">Contraseña</a></li>
             </ul>
         </div>
     </div>
     <div class="content">
+        <table class="" border="0" align="left">
+            <tr>
+                <td align="left"><label>Activo <input class="usr_field" type="checkbox" disabled/></label>
+                &nbsp;&nbsp;&nbsp;
+                <label>Grupo
+                    <select class="usr_field" id="usr_grupo" disabled>
+                        <option>Select 1</option>
+                        <option>Select 2 Select 2</option>
+                        <option>Select 3</option>
+                        <option>Select 4</option>
+                    </select></label>
+            </tr>
+        </table>
+        <br/><br/><br/><br/>
         <table class="" border="0" align="center">
             <tr>
-                <td align="right"><input type="checkbox"/> Activo</td>
-                <td align="left">Grupo
-                    <select id="usr_grupo">
-                        <option>Opción 1</option>
-                        <option>Opción 2</option>
-                        <option>Opción 3</option>
-                        <option>Opción 4</option>
-                    </select>
+                <td align="left"><label>Nombres<br/><input class="usr_field" id="usr_nombres" maxlength="100" size="20" disabled/></label></td>
+                <td align="left"><label>Apellido Paterno<br/><input class="usr_field" id="usr_apPat" maxlength="100" size="20" disabled/></label></td>
+                <td align="left"><label>Apellido Materno<br/><input class="usr_field" id="usr_apMat" maxlength="100" size="20" disabled/></label></td>
             </tr>
-
             <tr>
-                <td align="left">
-                    Nombres<br/><input id="usr_nombres" maxlength="20" size="20"/><br/><br/>
-                    Apellido Paterno<br/><input id="usr_apPat" maxlength="20" size="20"/><br/><br/>
-                    Apellido Materno<br/><input id="usr_apMat" maxlength="20" size="20"/><br/><br/>
-                    Doc ID<br/><input id="usr_nombres" maxlength="20" size="20"/>
-                </td>
-                <td align="left">
-                    Teléfonos<br/><input id="usr_apPat" maxlength="20" size="20"/><br/><br/>
-                    e-mail<br/><input id="usr_apMat" maxlength="20" size="20"/><br/><br/>
-                    Dirección<br/><textarea cols="24" rows="4"></textarea>
-                </td>
+                <td align="left"><label>Doc ID<br/><input class="usr_field" id="usr_nombres" maxlength="100" size="20" disabled/></label></td>
+                <td align="left"><label>Teléfonos<br/><input class="usr_field" id="usr_apPat" maxlength="100" size="20" disabled/></label></td>
+                <td align="left"><label>e-mail<br/><input class="usr_field" id="usr_apMat" maxlength="100" size="20" disabled/></label></td>
             </tr>
-
-            <tr><td align="left" colspan="2">Comentarios<br/><textarea cols="52" rows="5"></textarea></td><tr>
-
-        </table>
+            <tr>
+                <td align="left"><label>Dirección<br/><textarea class="usr_field" cols="19" rows="4" disabled></textarea></label></td>
+                <td align="left" colspan="2"><label>Comentarios<br/><textarea class="usr_field" cols="43" rows="4" disabled></textarea></label></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="3">
+                    <button class="usr_field">Guardar Cambios</button>
+                </td>
+            <tr>
+        <table>
     </div>
 </div>
 </body>
