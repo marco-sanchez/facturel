@@ -55,14 +55,29 @@ verify_usr();
 
         function selfActions(){
             $("#editar").click(function(){
-                leftPanSel($(this));
-                /*$('#usr_field').attr('disabled', 'disabled'); //Disable*/
-                $('.usr_field').removeAttr('disabled'); //Enable
-                $("button.usr_field").show();
+                leftPanSelection($(this));
+                if ($("#usr_nombres").is(":disabled")) {
+                    $('.usr_field').removeAttr('disabled'); //Enables fields
+                    $("button.usr_field").show();
+                } else {
+                    location.reload();
+                }
             });
 
             $("#pass").click(function(){
-                leftPanSel($(this));
+                leftPanSelection($(this));
+            });
+
+            $("#btnUsrGuardar").click(function(){
+                $(this).fadeOut(1000);
+                $("#btnUsrCancelar").fadeOut(1000);
+
+                $("#editar").removeClass("selected");
+                $('.usr_field').attr('disabled', 'disabled'); //Disables fields
+            });
+
+            $("#btnUsrCancelar").click(function(){
+                location.reload();
             })
         }
 
@@ -79,7 +94,7 @@ verify_usr();
     </div>
     <div class="top_menu">
         <span class="top_container">
-            <span class="usr_name">
+            <span class="usr_name" style="color: orange"><!-- Orange to look as "selected" -->
                 <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
             </span>
             &nbsp;&nbsp;
@@ -144,7 +159,9 @@ verify_usr();
             </tr>
             <tr>
                 <td align="center" colspan="3">
-                    <button class="usr_field">Guardar Cambios</button>
+                    <button class="usr_field btn_positivo" id="btnUsrGuardar">Guardar</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="usr_field btn_negativo" id="btnUsrCancelar">Cancelar</button>
                 </td>
             <tr>
         </table>

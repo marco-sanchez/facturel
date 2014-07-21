@@ -30,7 +30,7 @@ function msgBoxJS(msg){
     $(".messageBox").show();
 }
 
-function leftPanSel (elemento){
+function leftPanSelection (elemento){
     if ($(elemento).hasClass("selected")){
         $(elemento).removeClass("selected");
     }

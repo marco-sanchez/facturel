@@ -69,6 +69,7 @@ button {
     font-family: "Ubuntu Mono", sans-serif;
     text-decoration: none;
     vertical-align: middle;
+    cursor: pointer;
 
     background: #000000;
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#696969), to(#000000)); /* Safari 4-5, Chrome 1-9 */
@@ -83,19 +84,34 @@ button {
     -webkit-box-shadow: #000000 0 1px 0;
     -moz-box-shadow: #000000 0 1px 0;
     box-shadow: #000000 0 1px 0;
-    text-shadow: #696969 0 1px 0;
 
     } button:hover {
         color: orange;
-        cursor: pointer;
+        border-color: orange;
 
-        } button:active {
-            background: #696969;
-            background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#696969)); /* Safari 4-5, Chrome 1-9 */
-            background: -webkit-linear-gradient(top, #000000, #696969); /* Safari 5.1, Chrome 10+ */
-            background: -moz-linear-gradient(top, #000000), #696969); /* Firefox 3.6+ */
-            background: -ms-linear-gradient(top, #000000, #696969); /* IE 10 */
-            background: -o-linear-gradient(top, #000000, #696969); /* Opera 11.10+ */
+    } button:active {
+        background: #696969;
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#696969)); /* Safari 4-5, Chrome 1-9 */
+        background: -webkit-linear-gradient(top, #000000, #696969); /* Safari 5.1, Chrome 10+ */
+        background: -moz-linear-gradient(top, #000000), #696969); /* Firefox 3.6+ */
+        background: -ms-linear-gradient(top, #000000, #696969); /* IE 10 */
+        background: -o-linear-gradient(top, #000000, #696969); /* Opera 11.10+ */
+}
+
+button.btn_positivo {
+    color: #dd7f00;
+    border-color: #dd7f00;
+} button.btn_positivo:hover {
+      color: orange;
+      border-color: orange;
+}
+
+button.btn_negativo {
+    color: #d06868;
+    border-color: #d06868;
+    } button.btn_negativo:hover {
+        color: #ff8d8d;
+        border-color: #ff8d8d;
 }
 
 th, td {
