@@ -32,8 +32,26 @@ verify_usr();
                 window.location = 'index.php';
             });
 
+            selfLoadData();
             selfActions();
         });
+
+        function selfLoadData(){
+            var activo = <?php echo $_SESSION['current_user']['activo']?>;
+            if (activo == 1)
+                $("#usr_activo").prop('checked', true);
+            else
+                $("#usr_activo").prop('checked', false);
+
+            $("#usr_nombres").val('<?php echo $_SESSION['current_user']['nombres']?>');
+            $("#usr_apPat").val('<?php echo $_SESSION['current_user']['apPat']?>');
+            $("#usr_apMat").val('<?php echo $_SESSION['current_user']['apMat']?>');
+            $("#usr_doc").val('<?php echo $_SESSION['current_user']['docId']?>');
+            $("#usr_tel").val('<?php echo $_SESSION['current_user']['telefonos']?>');
+            $("#usr_email").val('<?php echo $_SESSION['current_user']['email']?>');
+            $("#usr_dir").val('<?php echo $_SESSION['current_user']['direccion']?>');
+            $("#usr_coms").val('<?php echo $_SESSION['current_user']['comentarios']?>');
+        }
 
         function selfActions(){
             $("#editar").click(function(){
@@ -92,8 +110,13 @@ verify_usr();
     <div class="content">
         <table class="" border="0" align="left">
             <tr>
-                <td align="left"><label>Activo <input class="usr_field" type="checkbox" disabled/></label>
-                &nbsp;&nbsp;&nbsp;
+                <td align="left">
+                    <div class="slideCheck">
+                        <input type="checkbox" class="usr_field" id="usr_activo" disabled/>
+                        <label for="usr_activo"></label>
+                    </div>
+                </td>
+                <td> &nbsp;&nbsp;&nbsp;
                 <label>Grupo
                     <select class="usr_field" id="usr_grupo" disabled>
                         <option>Select 1</option>
@@ -111,20 +134,20 @@ verify_usr();
                 <td align="left"><label>Apellido Materno<br/><input class="usr_field" id="usr_apMat" maxlength="100" size="20" disabled/></label></td>
             </tr>
             <tr>
-                <td align="left"><label>Doc ID<br/><input class="usr_field" id="usr_nombres" maxlength="100" size="20" disabled/></label></td>
-                <td align="left"><label>Teléfonos<br/><input class="usr_field" id="usr_apPat" maxlength="100" size="20" disabled/></label></td>
-                <td align="left"><label>e-mail<br/><input class="usr_field" id="usr_apMat" maxlength="100" size="20" disabled/></label></td>
+                <td align="left"><label>Doc ID<br/><input class="usr_field" id="usr_doc" maxlength="100" size="20" disabled/></label></td>
+                <td align="left"><label>Teléfonos<br/><input class="usr_field" id="usr_tel" maxlength="100" size="20" disabled/></label></td>
+                <td align="left"><label>e-mail<br/><input class="usr_field" id="usr_email" maxlength="100" size="20" disabled/></label></td>
             </tr>
             <tr>
-                <td align="left"><label>Dirección<br/><textarea class="usr_field" cols="19" rows="4" disabled></textarea></label></td>
-                <td align="left" colspan="2"><label>Comentarios<br/><textarea class="usr_field" cols="43" rows="4" disabled></textarea></label></td>
+                <td align="left"><label>Dirección<br/><textarea class="usr_field" id="usr_dir" cols="19" rows="4" disabled></textarea></label></td>
+                <td align="left" colspan="2"><label>Comentarios<br/><textarea class="usr_field" id="usr_coms" cols="43" rows="4" disabled></textarea></label></td>
             </tr>
             <tr>
                 <td align="center" colspan="3">
                     <button class="usr_field">Guardar Cambios</button>
                 </td>
             <tr>
-        <table>
+        </table>
     </div>
 </div>
 </body>
