@@ -52,7 +52,6 @@ verify_usr();
 <body>
     <div class="cover"></div>
 
-
     <div class="top" >
         <div class="logo_img" >
             <img src="img/logo_cedempre.png" width="200"/>

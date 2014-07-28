@@ -57,19 +57,20 @@ verify_usr();
         <img src="img/logo_cedempre.png" width="200"/>
     </div>
     <div class="top_menu">
-        <span class="top_container">
-            <span class="usr_name">
-                <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
+            <span class="top_container">
+                <span class="usr_name">
+                    <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
+                </span>
+                &nbsp;&nbsp;
+                <button class="opt_button" id="ayuda">Ayuda</button>
+                <button class="opt_button" id="salir">Salir</button>
             </span>
-            &nbsp;&nbsp;
-            <button class="opt_button">Ayuda</button>
-            <button class="opt_button">Salir</button>
-        </span>
+
         <br/><br/>
         <ul>
             <li><a class="round_left" href="main.php">Ventas</a></li>
             <li><a href="productos.php">Productos</a></li>
-            <li><a class="selected" href="">Clientes</a></li>
+            <li><a class="selected" href="clientes.php">Clientes</a></li>
             <li><a class="round_right" href="reportes.php">Reportes</a></li>
         </ul>
     </div>

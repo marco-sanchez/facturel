@@ -26,6 +26,9 @@ verify_usr();
                 window.location = 'usuario.php';
             });
 
+            $("#ayuda").click(function(){
+
+            });
             $("#salir").click(function(){
                 //Setting exp. date of "PHP session cookie" to year zero
                 document.cookie = 'PHPSESSID=; expires=Mon, 01-Jan-00 00:00:01 GMT;';
@@ -66,6 +69,10 @@ verify_usr();
 
             $("#pass").click(function(){
                 leftPanSelection($(this));
+
+                $(".cover").show();
+                $("#passChange").show();
+
             });
 
             $("#btnUsrGuardar").click(function(){
@@ -78,8 +85,18 @@ verify_usr();
 
             $("#btnUsrCancelar").click(function(){
                 location.reload();
-            })
+            });
+
+            $("#btnCloseMB").click(function(){
+                $("#usr").val('');
+                $("#pass").val('');
+                $(".message").html('');
+                $(".messageBox").hide();
+                $(".cover").hide();
+            });
         }
+
+
 
     </script>
 
@@ -87,20 +104,28 @@ verify_usr();
 
 <body>
 <div class="cover"></div>
+<div class="messageBox msgTxt" id="passChange">
+    <img id='btnCloseMB' src='img/close.png'> <br/>
+    <label>Contraseña actual<br/><input id="oldPass"/></label><br/>
+    <label>Nueva contraseña<br/><input id="newPass1"/></label><br/>
+    <label>Repita contraseña<br/><input id="newPass2"/></label><br/>
+    <br/>
+    <button class="btn_positivo" id="btnPassGuardar">Guardar</button>
+</div>
 
 <div class="top" >
     <div class="logo_img" >
         <img src="img/logo_cedempre.png" width="200"/>
     </div>
     <div class="top_menu">
-        <span class="top_container">
-            <span class="usr_name" style="color: orange"><!-- Orange to look as "selected" -->
-                <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
+            <span class="top_container">
+                <span class="usr_name">
+                    <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
+                </span>
+                &nbsp;&nbsp;
+                <button class="opt_button" id="ayuda">Ayuda</button>
+                <button class="opt_button" id="salir">Salir</button>
             </span>
-            &nbsp;&nbsp;
-            <button class="opt_button">Ayuda</button>
-            <button class="opt_button">Salir</button>
-        </span>
 
         <br/><br/>
         <ul>
@@ -109,9 +134,7 @@ verify_usr();
             <li><a href="clientes.php">Clientes</a></li>
             <li><a class="round_right" href="reportes.php">Reportes</a></li>
         </ul>
-        <span class="selfTitle">DATOS USUARIO</span><br/><br/>
     </div>
-
 </div>
 <div class="central">
     <div class="left_panel">
