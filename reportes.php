@@ -16,8 +16,7 @@ verify_usr();
 
     <link rel="stylesheet" type="text/css" href="css/_main.css">
 
-    <!-- Font : Ubuntu Mono from Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+
 
     <script src="js/_main.js"></script>
     <script>

@@ -16,8 +16,7 @@ verify_usr();
 
     <link rel="stylesheet" type="text/css" href="css/_main.css">
 
-    <!-- Font : Ubuntu Mono from Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+
 
     <script src="js/_main.js"></script>
     <script>
@@ -75,6 +74,17 @@ verify_usr();
 
             });
 
+            $("#btnCloseMB").click(function(){
+
+                leftPanSelection($("#pass"));
+
+                $("#usr").val('');
+                $("#pass").val('');
+                $(".message").html('');
+                $(".messageBox").hide();
+                $(".cover").hide();
+            });
+
             $("#btnUsrGuardar").click(function(){
                 $(this).fadeOut(1000);
                 $("#btnUsrCancelar").fadeOut(1000);
@@ -87,16 +97,34 @@ verify_usr();
                 location.reload();
             });
 
-            $("#btnCloseMB").click(function(){
-                $("#usr").val('');
-                $("#pass").val('');
-                $(".message").html('');
-                $(".messageBox").hide();
+            $("#clTxt").click(function(){
+                $(".msgTxt input").val('');
+
+                $(".msgTxt").hide();
                 $(".cover").hide();
             });
+
+            $("#clErr").click(function(){
+                $(".message").html('');
+                $(".msgError").hide();
+            });
+
+            $("#btnPassGuardar").click(function(){
+                var usr = '<?php echo $_SESSION['current_user']['usuario']?>';
+                var oldPass = $('#oldPass').val();
+                var newPass1 = $("#newPass1").val();
+                var newPass2 = $("#newPass2").val();
+
+                if (newPass1 == newPass2){
+                    if (evalLogin (usr, oldPass, 'chPass')){
+                        alert("everything was approved");
+                    } else alert("oldPass WRONG");
+
+                } else {
+                    alert("newPass WRONG");
+                }
+            });
         }
-
-
 
     </script>
 
@@ -106,11 +134,16 @@ verify_usr();
 <div class="cover"></div>
 <div class="messageBox msgTxt" id="passChange">
     <img id='btnCloseMB' src='img/close.png'> <br/>
-    <label>Contraseña actual<br/><input id="oldPass"/></label><br/>
-    <label>Nueva contraseña<br/><input id="newPass1"/></label><br/>
-    <label>Repita contraseña<br/><input id="newPass2"/></label><br/>
+    <label>Contraseña actual<br/><input type="password" id="oldPass"/></label><br/><br/>
+    <label>Nueva contraseña<br/><input type="password" id="newPass1"/></label><br/><br/>
+    <label>Repetir contraseña<br/><input type="password" id="newPass2"/></label><br/><br/>
     <br/>
     <button class="btn_positivo" id="btnPassGuardar">Guardar</button>
+</div>
+
+<div class="messageBox msgError">
+    <img id='btnCloseMB' src='img/close.png'> <br/>
+    <span class="message"></span>
 </div>
 
 <div class="top" >

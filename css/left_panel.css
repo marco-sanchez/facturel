@@ -20,8 +20,8 @@
 }
 
 .left_panel .lp_controls ul li{
-    font-family: 'Ubuntu Mono',sans-serif;
-    font-size: 18px;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 16px;
     text-align: right;
     margin-bottom: 10px;
 }

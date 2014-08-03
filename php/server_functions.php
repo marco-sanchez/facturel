@@ -5,33 +5,51 @@ if(!isset($_SESSION))
 ob_start();
 
 if(isset($_POST['login_values'])) {
-    validate_user($_POST['login_values'], true);
+    validate_user($_POST['login_values']);
 }
 
-function validate_user($usr_pass, $login = false){
+function validate_user($login_values){
+    $aResult = array();
+    $SQL='';
+    switch ($login_values['axn']){
+        case 'login':
+            $SQL = "SELECT * FROM usuarios WHERE usuario='" . ecrypt($login_values['usuario']) . "' AND password='" . ecrypt($login_values['password']) . "'";
+        break;
+        case 'chPass':
+            $SQL = "SELECT * FROM usuarios WHERE usuario='" . $login_values['usuario'] . "' AND password='" . ecrypt($login_values['password']) . "'";
+        break;
+        case 'verify':
+            $SQL = "SELECT * FROM usuarios WHERE usuario='" . $login_values['usuario'] . "' AND password='" . $login_values['password'] . "'";
+        break;
+    }
 
-    $SQL = "SELECT * FROM usuarios WHERE usuario='" . ($login? ecrypt($usr_pass['usuario']) : $usr_pass['usuario']) . "' AND password='" . ($login? ecrypt($usr_pass['password']) : $usr_pass['password']) . "'";
     $res = SQL_exec($SQL);
 
     if ($res && $res['activo']){
-        if ($login) {
+        if ($login_values['axn']=='login'){
             $_SESSION["current_user"] = $res;
         }
         session_regenerate_id(true);
         session_write_close();
-        return true;
+        $aResult['validation'] = true;
     } else {
-        if ($login)
-            echo "false";
-        else
-            return false;
+        $aResult['validation'] = false;
     }
-}
 
+    if ($login_values['axn'] != 'verify')
+        echo json_encode($aResult);
+    return $aResult['validation'];
+}
 
 function verify_usr(){
     if(isset($_SESSION['current_user'])) {
-        if(!validate_user($_SESSION['current_user']) || !$_SESSION['current_user']['activo'])
+        $login_values = [
+            'usuario' => $_SESSION['current_user']['usuario'],
+            'password' => $_SESSION['current_user']['password'],
+            'axn' => 'verify'
+        ];
+
+        if(!validate_user($login_values) || !$_SESSION['current_user']['activo'])
             redir("index.php");
 
     } else redir("index.php");
@@ -41,37 +59,37 @@ function openBD()
 {
     // BD en LocalHost
     if (substr_count($_SERVER['HTTP_HOST'], 'localhost') > 0) {
-    	$Conexion = mysql_connect("localhost","root","sample");
-        mysql_select_db("bdfel", $Conexion);
+    	$Conn = mysql_connect("localhost","root","sample");
+        mysql_select_db("bdfel", $Conn);
         mysql_query("SET NAMES 'utf8'"); //para caracteres especiales del español (áé..ñ..öü)
     }
 
     //BD en www.marco-sanchez.com
     elseif (substr_count($_SERVER['HTTP_HOST'], 'marco-sanchez') > 0) {
-    	$Conexion = mysql_connect("localhost","marcosan","4879907lp");
-        mysql_select_db("marcosan_bdfel", $Conexion);
+        $Conn = mysql_connect("localhost","marcosan","4879907lp");
+        mysql_select_db("marcosan_bdfel", $Conn);
         mysql_query("SET NAMES 'utf8'"); //para caracteres especiales del español (áé..ñ..öü)
     }
 
     //BD en www.marco-sanchez.com
     elseif (substr_count($_SERVER['HTTP_HOST'], '192.168.') > 0) {
-        $Conexion = mysql_connect("localhost","root","sample");
-        mysql_select_db("bdfel", $Conexion);
+        $Conn = mysql_connect("localhost","root","sample");
+        mysql_select_db("bdfel", $Conn);
         mysql_query("SET NAMES 'utf8'"); //para caracteres especiales del español (áé..ñ..öü)
     }
 
     // URL desconocido
     else {
         msgJS ("ERROR: No hay conexión BD con el sitio ".$_SERVER['HTTP_HOST']);
-        $Conexion = '';
+        $Conn = '';
     }
-    return $Conexion;
+    return $Conn;
 }
 
 // Cierra conección con BD /////////////////////////////////////////////////////////////////
-function closeBD($Conexion)
+function closeBD($Conn)
 {	#	 NO quitar las llaves
-    mysql_close($Conexion);
+    mysql_close($Conn);
 }
 function ecrypt($s){for($x=0;$x<=10;$x++){$s=md5(md5(md5(md5(md5($s)))));}return $s;}
 // EJECUTA una consulta en MySql y retorna el resultado ////////////////////////////////////

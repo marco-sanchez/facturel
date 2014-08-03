@@ -12,8 +12,7 @@ ob_start();
         <meta charset="UTF-8"/>
         <link rel="stylesheet" type="text/css" href="css/_main.css">
 
-        <!-- Font : Ubuntu Mono from Google Fonts -->
-        <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+
 
         <title>FACTUREL</title>
 
@@ -23,7 +22,16 @@ ob_start();
         <script>
             $(document).ready(function(){
                 $("#btnLogin").click(function(){
-                    evalLogin ($("#usr").val(), $("#pass").val());
+                    var usr = $('#usr').val();
+                    var pass = $('#pass').val();
+
+                    if (usr.trim() != '' && pass.trim() != '')
+                        if (evalLogin ($("#usr").val(), $("#pass").val(), 'login'))
+                            window.location = 'main.php';
+                        else
+                            msgBoxJS("Los datos introducidos no<br>corresponden a un usuario activo.", ".msgError");
+                    else
+                        msgBoxJS("Debe insertar ambos datos.", ".msgError");
                 });
 
                 $("#btnCloseMB").click(function(){

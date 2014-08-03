@@ -1,32 +1,40 @@
-function evalLogin (usr, pass) {
-
-    if (!(usr && pass)) {
-        msgBoxJS("Debe insertar ambos datos.");
-    } else {
-        var login_values = {
-            usuario: $.md5(usr),
-            password: $.md5(pass)
-        };
-
-        $.ajax({
-            url: 'php/server_functions.php',
-            type: 'post',
-            cache: false,
-            data: {"login_values": login_values},
-            success: function(resp){
-                if (resp=="false") {
-                    msgBoxJS("Los datos introducidos no<br>corresponden a un usuario activo.");
-                } else {
-                    window.location = 'main.php';
-                }
-            }
-        });
+function evalLogin (ev_usr, ev_pass, ev_axn) {
+    var res = false;
+    var login_values = {};
+    switch (ev_axn) {
+        case 'login':
+            login_values = {
+                usuario: $.md5(ev_usr),
+                password: $.md5(ev_pass),
+                axn: ev_axn
+            };
+            break;
+        case 'chPass':
+            login_values = {
+                usuario: ev_usr,
+                password: $.md5(ev_pass),
+                axn: ev_axn
+            };
+            break;
+        default:
+            alert("USR y PASS recibidos");
     }
+    $.ajax({
+        url: 'php/server_functions.php',
+        type: 'POST',
+        async: false,
+        dataType: 'json',
+        data: {login_values: login_values},
+        success: function(resp){
+            res = resp.validation;
+        }
+    });
+    return res;
 }
 
-function msgBoxJS(msg){
-    $(".message").html(msg);
+function msgBoxJS(msgTxt, msgType){
     $(".cover").show();
+    $(msgType + " .message").html(msgTxt);
     $(".messageBox").show();
 }
 
