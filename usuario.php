@@ -21,6 +21,9 @@ verify_usr();
     <script src="js/_main.js"></script>
     <script>
         $(document).ready(function(){
+
+            $(".messageBox").addClass("ui-widget-content");
+
             $(".usr_name").click(function(){
                 window.location = 'usuario.php';
             });
@@ -55,22 +58,35 @@ verify_usr();
             $("#usr_coms").val('<?php echo $_SESSION['current_user']['comentarios']?>');
         }
 
+        function cancelEdit() {
+            if ($("#editar").hasClass('selected')){
+                leftPanSelection($("#editar"));
+            }
+            selfLoadData();
+            $('.usr_field').prop('disabled', true);
+            $("button.usr_field").fadeOut(500);
+        }
+
         function selfActions(){
             $("#editar").click(function(){
+
                 leftPanSelection($(this));
-                if ($("#usr_nombres").is(":disabled")) {
-                    $('.usr_field').removeAttr('disabled'); //Enables fields
-                    $("button.usr_field").show();
+
+                if ($("#editar").hasClass('selected')){
+                    $('.usr_field').prop('disabled', false);
+                    $("button.usr_field").fadeIn(500);
                 } else {
-                    location.reload();
+                    cancelEdit();
                 }
+
             });
 
             $("#pass").click(function(){
+                if ($("#editar").hasClass('selected'))
+                    cancelEdit();
                 leftPanSelection($(this));
-
                 $(".cover").show();
-                $("#passChange").show();
+                $("#passChange").fadeIn(500);
 
             });
 
@@ -86,15 +102,11 @@ verify_usr();
             });
 
             $("#btnUsrGuardar").click(function(){
-                $(this).fadeOut(1000);
-                $("#btnUsrCancelar").fadeOut(1000);
-
-                $("#editar").removeClass("selected");
-                $('.usr_field').attr('disabled', 'disabled'); //Disables fields
+                cancelEdit();
             });
 
             $("#btnUsrCancelar").click(function(){
-                location.reload();
+                cancelEdit();
             });
 
             $("#clTxt").click(function(){
@@ -118,10 +130,13 @@ verify_usr();
                 if (newPass1 == newPass2){
                     if (evalLogin (usr, oldPass, 'chPass')){
                         alert("everything was approved");
-                    } else alert("oldPass WRONG");
+                        $("#btnCloseMB").click();
+                    } else {
+                        msgBoxJS("Error en 'Contraseña Actual'", ".msgError");
+                    }
 
                 } else {
-                    alert("newPass WRONG");
+                    msgBoxJS("Los campos de nueva contraseña no coinciden", ".msgError");
                 }
             });
         }
@@ -131,19 +146,21 @@ verify_usr();
 </head>
 
 <body>
+
+<!-- ToDo: id='btnCloseMB' should be changed to class='btnCloseMB' -->
+
 <div class="cover"></div>
-<div class="messageBox msgTxt" id="passChange">
+<div class="messageBox msgError">
+    <img id='btnCloseMB' src='img/close.png'> <br/>
+    <span class="message"></span>
+</div>
+<div class="messageBox msgTxt" id="passChange" draggable="true">
     <img id='btnCloseMB' src='img/close.png'> <br/>
     <label>Contraseña actual<br/><input type="password" id="oldPass"/></label><br/><br/>
     <label>Nueva contraseña<br/><input type="password" id="newPass1"/></label><br/><br/>
     <label>Repetir contraseña<br/><input type="password" id="newPass2"/></label><br/><br/>
     <br/>
     <button class="btn_positivo" id="btnPassGuardar">Guardar</button>
-</div>
-
-<div class="messageBox msgError">
-    <img id='btnCloseMB' src='img/close.png'> <br/>
-    <span class="message"></span>
 </div>
 
 <div class="top" >

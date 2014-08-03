@@ -20,6 +20,10 @@ body {
     background-color: rgb(40, 40, 40);
 }
 
+[draggable=true] {
+    cursor: move;
+}
+
 div {
     margin: 0 auto;
     box-sizing: border-box;

@@ -12,8 +12,6 @@ ob_start();
         <meta charset="UTF-8"/>
         <link rel="stylesheet" type="text/css" href="css/_main.css">
 
-
-
         <title>FACTUREL</title>
 
         <script src="js/libraries/jquery-2.1.1.min.js"></script>

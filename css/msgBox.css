@@ -14,6 +14,8 @@ div.cover{
 
 div.messageBox{
     display: none;
+    border: solid 5px black;
+    color: white;
 
     /* CENTER DIV IN SCREEN
     margin-left = -(width / 2);
@@ -38,25 +40,21 @@ div.messageBox{
       height: 20px;
       padding: 0;
 
-      background-color: lightgray;
-      border: solid 2px lightgray;
+      background-color: black;
+      border: solid 2px black;
       border-radius: 15px;
 
     } #btnCloseMB:hover {
-        background-color: white;
-        border: solid 2px white;
+        background-color: black;
+        border: solid 2px yellow;
         cursor: pointer;
         } #btnCloseMB:active {
 }
 
 .msgError{
-    border: solid 5px yellow;
-    background-color: #3d0000;
-    color: #ffa79a;
+    background-color: #c95a58;
 }
 
 .msgTxt{
-    border: solid 5px gray;
-    background-color: black;
-    color: white;
+    background-color: #323232;
 }
