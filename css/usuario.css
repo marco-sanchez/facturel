@@ -25,4 +25,5 @@ button.usr_field {
     margin-left: -150px;
     margin-top: -200px;
     /************************/
+    z-index: 1001;
 }

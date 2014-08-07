@@ -60,7 +60,7 @@ verify_usr();
                 </span>
                 &nbsp;&nbsp;
                 <button class="opt_button" id="ayuda">Ayuda</button>
-                <button class="opt_button" id="salir">Salir</button>
+                <button class="opt_button btn_negativo" id="salir">Salir</button>
             </span>
 
         <br/><br/>

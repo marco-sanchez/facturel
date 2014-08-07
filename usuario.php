@@ -67,6 +67,12 @@ verify_usr();
             $("button.usr_field").fadeOut(500);
         }
 
+        function hidePopup(element) {
+            element.hide();
+            $(".message").html('');
+            $(".cover").hide();
+        }
+
         function selfActions(){
             $("#editar").click(function(){
 
@@ -85,20 +91,9 @@ verify_usr();
                 if ($("#editar").hasClass('selected'))
                     cancelEdit();
                 leftPanSelection($(this));
-                $(".cover").show();
+                $(".cover").fadeIn(500);
                 $("#passChange").fadeIn(500);
 
-            });
-
-            $("#btnCloseMB").click(function(){
-
-                leftPanSelection($("#pass"));
-
-                $("#usr").val('');
-                $("#pass").val('');
-                $(".message").html('');
-                $(".messageBox").hide();
-                $(".cover").hide();
             });
 
             $("#btnUsrGuardar").click(function(){
@@ -109,35 +104,33 @@ verify_usr();
                 cancelEdit();
             });
 
-            $("#clTxt").click(function(){
-                $(".msgTxt input").val('');
-
-                $(".msgTxt").hide();
-                $(".cover").hide();
-            });
-
-            $("#clErr").click(function(){
-                $(".message").html('');
-                $(".msgError").hide();
-            });
-
             $("#btnPassGuardar").click(function(){
+
                 var usr = '<?php echo $_SESSION['current_user']['usuario']?>';
                 var oldPass = $('#oldPass').val();
                 var newPass1 = $("#newPass1").val();
                 var newPass2 = $("#newPass2").val();
 
+                $('#passChange input').val('');
+                $("#passChange").fadeOut(500);
+
                 if (newPass1 == newPass2){
                     if (evalLogin (usr, oldPass, 'chPass')){
                         alert("everything was approved");
-                        $("#btnCloseMB").click();
+                        $(".cover").fadeOut(500);
+                        leftPanSelection($("#pass"));
                     } else {
-                        msgBoxJS("Error en 'Contraseña Actual'", ".msgError");
+                        msgBoxJS("Error en 'Contraseña Actual'", $(".msgError"));
                     }
-
                 } else {
-                    msgBoxJS("Los campos de nueva contraseña no coinciden", ".msgError");
+                    msgBoxJS("Nueva contraseña no coincide", $(".msgError"));
                 }
+            });
+
+            $(".btnCloseMB").click(function(){
+                leftPanSelection($("#pass"));
+                console.log("MRC $(this).parent()",$(this).parent());
+                hidePopup($(this).parent());
             });
         }
 
@@ -147,15 +140,13 @@ verify_usr();
 
 <body>
 
-<!-- ToDo: id='btnCloseMB' should be changed to class='btnCloseMB' -->
-
 <div class="cover"></div>
 <div class="messageBox msgError">
-    <img id='btnCloseMB' src='img/close.png'> <br/>
+    <img class='btnCloseMB' src='img/close.png'> <br/>
     <span class="message"></span>
 </div>
 <div class="messageBox msgTxt" id="passChange" draggable="true">
-    <img id='btnCloseMB' src='img/close.png'> <br/>
+    <img class='btnCloseMB' src='img/close.png'><br/>
     <label>Contraseña actual<br/><input type="password" id="oldPass"/></label><br/><br/>
     <label>Nueva contraseña<br/><input type="password" id="newPass1"/></label><br/><br/>
     <label>Repetir contraseña<br/><input type="password" id="newPass2"/></label><br/><br/>
@@ -174,7 +165,7 @@ verify_usr();
                 </span>
                 &nbsp;&nbsp;
                 <button class="opt_button" id="ayuda">Ayuda</button>
-                <button class="opt_button" id="salir">Salir</button>
+                <button class="opt_button btn_negativo" id="salir">Salir</button>
             </span>
 
         <br/><br/>

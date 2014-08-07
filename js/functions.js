@@ -32,10 +32,10 @@ function evalLogin (ev_usr, ev_pass, ev_axn) {
     return res;
 }
 
-function msgBoxJS(msgTxt, msgType){
-    $(".cover").show();
-    $(msgType + " .message").html(msgTxt);
-    $(".messageBox").show();
+function msgBoxJS(msgTxt, msgElement){
+    $(".cover").fadeIn(500);
+    $(".message").html(msgTxt);
+    msgElement.fadeIn(500);
 }
 
 function leftPanSelection (elemento){

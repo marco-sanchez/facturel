@@ -8,7 +8,7 @@ div.cover{
     width: 100%;
     height: 100%;
     background-color: gray;
-    z-index:1001;
+    z-index:1000;
     opacity:.40;
 }
 
@@ -16,6 +16,7 @@ div.messageBox{
     display: none;
     border: solid 5px black;
     color: white;
+    z-index:1002;
 
     /* CENTER DIV IN SCREEN
     margin-left = -(width / 2);
@@ -30,8 +31,7 @@ div.messageBox{
     /************************/
 
     padding-bottom: 30px;
-    z-index: 1050;
-    } #btnCloseMB {
+    } .btnCloseMB {
       position: absolute;
       top: -10px;
       right: -10px;
@@ -44,11 +44,11 @@ div.messageBox{
       border: solid 2px black;
       border-radius: 15px;
 
-    } #btnCloseMB:hover {
+    } .btnCloseMB:hover {
         background-color: black;
         border: solid 2px yellow;
         cursor: pointer;
-        } #btnCloseMB:active {
+        } .btnCloseMB:active {
 }
 
 .msgError{

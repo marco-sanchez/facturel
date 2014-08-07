@@ -32,7 +32,7 @@ ob_start();
                         msgBoxJS("Debe insertar ambos datos.", ".msgError");
                 });
 
-                $("#btnCloseMB").click(function(){
+                $(".btnCloseMB").click(function(){
                     $("#usr").val('');
                     $("#pass").val('');
                     $(".message").html('');
@@ -47,7 +47,7 @@ ob_start();
                          $("#btnLogin").click();
                      break;
                      case 27:
-                         $("#btnCloseMB").click();
+                         $(".btnCloseMB").click();
                          $("#usr").focus();
                      break;
                      default:
@@ -60,7 +60,7 @@ ob_start();
 <body>
     <div class="cover"></div>
     <div class="messageBox msgError">
-        <img id='btnCloseMB' src='img/close.png'> <br/>
+        <img class='btnCloseMB' src='img/close.png'> <br/>
         <span class="message"></span>
     </div>
 
