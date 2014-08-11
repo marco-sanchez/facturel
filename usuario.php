@@ -97,6 +97,19 @@ verify_usr();
             });
 
             $("#btnUsrGuardar").click(function(){
+                var datos = {
+                    id: '<?php echo $_SESSION['current_user']['id']?>',
+                    usr_nombres: $("#usr_nombres").val(),
+                    usr_apPat: $("#usr_apPat").val(),
+                    usr_apMat: $("#usr_apMat").val(),
+                    usr_doc: $("#usr_doc").val(),
+                    usr_tel: $("#usr_tel").val(),
+                    usr_email: $("#usr_email").val(),
+                    usr_dir: $("#usr_dir").val(),
+                    usr_coms: $("#usr_coms").val()
+                };
+
+                guardar_datos(datos, "usuarios");
                 cancelEdit();
             });
 

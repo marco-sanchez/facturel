@@ -47,3 +47,19 @@ function leftPanSelection (elemento){
         $(elemento).addClass("selected");
     }
 }
+
+function guardar_datos(datos, tabla){
+    $.ajax({
+        url: 'php/server_functions.php',
+        type: 'POST',
+        async: true,
+        dataType: 'json',
+        data: {
+            datos: datos,
+            tabla: tabla
+        },
+        success: function(resp){
+            return false;
+        }
+    });
+}

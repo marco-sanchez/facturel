@@ -8,6 +8,10 @@ if(isset($_POST['login_values'])) {
     validate_user($_POST['login_values']);
 }
 
+if(isset($_POST['datos']) and isset($_POST['tabla'])) {
+    guardar_datos($_POST['datos'], $_POST['tabla']);
+}
+
 function validate_user($login_values){
     $aResult = array();
     $SQL='';
@@ -109,4 +113,12 @@ function redir ($Pag){
 
 function msgJS ($msg){
     ?><script>alert('<?php echo $msg?>);</script><?php
+}
+
+function guardar_datos($datos, $tabla){
+    if ($datos['id']) {
+        foreach ($datos as $dato){
+            $dato_ejemplo = $dato;
+        }
+    }
 }
