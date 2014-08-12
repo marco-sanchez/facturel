@@ -28,7 +28,7 @@ input[type=checkbox] {
 
 .slideCheck:before {
     content: 'ACTIVO';
-    font: 12px/26px 'Ubuntu Mono', sans-serif;
+    font: 10px/25px "Lucida Console", Monaco, monospace;
     color: orange;
     position: absolute;
     left: 13px;
@@ -37,7 +37,7 @@ input[type=checkbox] {
 
 .slideCheck:after {
     content: 'INACTIVO';
-    font: 12px/26px 'Ubuntu Mono', sans-serif;
+    font: 10px/25px "Lucida Console", Monaco, monospace;
     color: lightgray;
     position: absolute;
     right: 6px;

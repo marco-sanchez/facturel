@@ -40,6 +40,7 @@ verify_usr();
         });
 
         function selfLoadData(){
+            $('#usr_grupo').empty();
             var grupos = leer_datos('usuarios_grupos');
             _.each(grupos, function(grupo){
                 $('#usr_grupo').append($('<option>', {
@@ -93,7 +94,7 @@ verify_usr();
                 } else cancelEdit();
             });
 
-            $("#pass").click(function(){
+            $("#usrPass").click(function(){
                 if ($("#editar").hasClass('selected'))
                     cancelEdit();
                 leftPanSelection($(this));
@@ -115,13 +116,13 @@ verify_usr();
                     direccion: $("#usr_dir").val(),
                     comentarios: $("#usr_coms").val()
                 };
-                alert (datos['activo']);
                 if (!datos['activo']){
-                    if (confirm("Al quedar inactivo su usuario esta sesión se cerrará.")){
+                    if (confirm("Al quedar inactivo su usuario, esta sesión se cerrará.")){
                         guardar_datos(datos, "usuarios");
                         location.reload(true);
                     }
                 } else {
+                    datos['activo'] = 1;
                     guardar_datos(datos, "usuarios");
                     cancelEdit();
                 }
@@ -133,28 +134,27 @@ verify_usr();
 
             $("#btnPassGuardar").click(function(){
                 var oldPass = $('#oldPass').val();
+                var newUsr = $("#newUsr").val();
                 var newPass1 = $("#newPass1").val();
                 var newPass2 = $("#newPass2").val();
+                var usr = '<?php echo $_SESSION['current_user']['usuario']?>';
 
                 $('#passChange input').val('');
                 $("#passChange").fadeOut(500);
 
-                if (newPass1 == newPass2){
-                    var usr = '<?php echo $_SESSION['current_user']['usuario']?>';
-                    if (evalLogin (usr, oldPass, 'chPass')){
-                        alert("everything was approved");
-                        $(".cover").fadeOut(500);
-                        leftPanSelection($("#pass"));
-                    } else {
-                        msgBoxJS("Error en 'Contraseña Actual'", $(".msgError"));
-                    }
-                } else {
-                    msgBoxJS("Nueva contraseña no coincide", $(".msgError"));
-                }
+                if (evalLogin (usr, oldPass, 'chPass')){
+                    if (newUsr != ''){
+                        if (newPass1 == newPass2 && newPass1 != ''){
+                            alert("everything was approved");
+                            $(".cover").fadeOut(500);
+                            leftPanSelection($("#usrPass"));
+                        } else msgBoxJS("Nueva contraseña no coincide o los campos están vacíos", $(".msgError"));
+                    } else msgBoxJS("Inserte nuevo usuario o repita el usuario actual", $(".msgError"));
+                } else msgBoxJS("'Contraseña Actual' no es válida", $(".msgError"));
             });
 
             $(".btnCloseMB").click(function(){
-                leftPanSelection($("#pass"));
+                leftPanSelection($("#usrPass"));
                 hidePopup($(this).parent());
             });
         }
@@ -173,6 +173,8 @@ verify_usr();
 <div class="messageBox msgTxt" id="passChange" draggable="true">
     <img class='btnCloseMB' src='img/close.png'><br/>
     <label>Contraseña actual<br/><input type="password" id="oldPass"/></label><br/><br/>
+    <hr/>
+    <label>Nuevo Usuario<br/><input type="text" id="newUsr"/></label><br/><br/>
     <label>Nueva contraseña<br/><input type="password" id="newPass1"/></label><br/><br/>
     <label>Repetir contraseña<br/><input type="password" id="newPass2"/></label><br/><br/>
     <br/>
@@ -206,8 +208,8 @@ verify_usr();
     <div class="left_panel">
         <div class="lp_controls">
             <ul>
-                <li><a class="round_left" id="editar">Editar Datos</a></li>
-                <li><a class="round_left" id="pass">Contraseña</a></li>
+                <li><a class="round_left" id="editar">Editar<br/>Datos</a></li>
+                <li><a class="round_left" id="usrPass">Usuario y Contraseña</a></li>
             </ul>
         </div>
     </div>
@@ -230,14 +232,14 @@ verify_usr();
         <br/><br/><br/><br/>
         <table class="" border="0" align="center">
             <tr>
-                <td align="left"><label>Nombres<br/><input class="usr_field" id="usr_nombres" maxlength="100" size="20" disabled/></label></td>
-                <td align="left"><label>Apellido Paterno<br/><input class="usr_field" id="usr_apPat" maxlength="100" size="20" disabled/></label></td>
-                <td align="left"><label>Apellido Materno<br/><input class="usr_field" id="usr_apMat" maxlength="100" size="20" disabled/></label></td>
+                <td align="left"><label>Nombres<br/><input class="usr_field" id="usr_nombres" maxlength="100" size="23" disabled/></label></td>
+                <td align="left"><label>Apellido Paterno<br/><input class="usr_field" id="usr_apPat" maxlength="100" size="23" disabled/></label></td>
+                <td align="left"><label>Apellido Materno<br/><input class="usr_field" id="usr_apMat" maxlength="100" size="23" disabled/></label></td>
             </tr>
             <tr>
-                <td align="left"><label>Doc ID<br/><input class="usr_field" id="usr_doc" maxlength="100" size="20" disabled/></label></td>
-                <td align="left"><label>Teléfonos<br/><input class="usr_field" id="usr_tel" maxlength="100" size="20" disabled/></label></td>
-                <td align="left"><label>e-mail<br/><input class="usr_field" id="usr_email" maxlength="100" size="20" disabled/></label></td>
+                <td align="left"><label>Doc ID<br/><input class="usr_field" id="usr_doc" maxlength="100" size="23" disabled/></label></td>
+                <td align="left"><label>Teléfonos<br/><input class="usr_field" id="usr_tel" maxlength="100" size="23" disabled/></label></td>
+                <td align="left"><label>e-mail<br/><input class="usr_field" id="usr_email" maxlength="100" size="23" disabled /></label></td>
             </tr>
             <tr>
                 <td align="left"><label>Dirección<br/><textarea class="usr_field" id="usr_dir" cols="19" rows="4" disabled></textarea></label></td>
