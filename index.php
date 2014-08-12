@@ -27,9 +27,9 @@ ob_start();
                         if (evalLogin ($("#usr").val(), $("#pass").val(), 'login'))
                             window.location = 'main.php';
                         else
-                            msgBoxJS("Los datos introducidos no<br>corresponden a un usuario activo.", ".msgError");
+                            msgBoxJS("Los datos introducidos no<br>corresponden a un usuario activo.", $(".msgError"));
                     else
-                        msgBoxJS("Debe insertar ambos datos.", ".msgError");
+                        msgBoxJS("Debe insertar ambos datos.", $(".msgError"));
                 });
 
                 $(".btnCloseMB").click(function(){

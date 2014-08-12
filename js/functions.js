@@ -52,14 +52,33 @@ function guardar_datos(datos, tabla){
     $.ajax({
         url: 'php/server_functions.php',
         type: 'POST',
-        async: true,
+        async: false,
         dataType: 'json',
         data: {
             datos: datos,
             tabla: tabla
         },
         success: function(resp){
-            return false;
+            return true;
         }
     });
+}
+
+function leer_datos(tabla, ids){
+    ids = ids || null;
+    var resp = false;
+    $.ajax({
+        url: 'php/server_functions.php',
+        type: 'POST',
+        async: false,
+        dataType: 'json',
+        data: {
+            tabla: tabla,
+            ids: ids
+        },
+        success: function(response){
+            resp = response;
+        }
+    });
+    return resp;
 }

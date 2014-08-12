@@ -16,8 +16,6 @@ verify_usr();
 
     <link rel="stylesheet" type="text/css" href="css/_main.css">
 
-
-
     <script src="js/_main.js"></script>
     <script>
         $(document).ready(function(){
@@ -42,20 +40,31 @@ verify_usr();
         });
 
         function selfLoadData(){
-            var activo = <?php echo $_SESSION['current_user']['activo']?>;
-            if (activo == 1)
+            var grupos = leer_datos('usuarios_grupos');
+            _.each(grupos, function(grupo){
+                $('#usr_grupo').append($('<option>', {
+                    value: grupo['id'],
+                    text: grupo['nombre']
+                }));
+            });
+
+            var usuario = leer_datos('usuarios', <?php echo $_SESSION['current_user']['id']?>);
+
+            if (usuario['activo'] == 1)
                 $("#usr_activo").prop('checked', true);
             else
                 $("#usr_activo").prop('checked', false);
 
-            $("#usr_nombres").val('<?php echo $_SESSION['current_user']['nombres']?>');
-            $("#usr_apPat").val('<?php echo $_SESSION['current_user']['apPat']?>');
-            $("#usr_apMat").val('<?php echo $_SESSION['current_user']['apMat']?>');
-            $("#usr_doc").val('<?php echo $_SESSION['current_user']['docId']?>');
-            $("#usr_tel").val('<?php echo $_SESSION['current_user']['telefonos']?>');
-            $("#usr_email").val('<?php echo $_SESSION['current_user']['email']?>');
-            $("#usr_dir").val('<?php echo $_SESSION['current_user']['direccion']?>');
-            $("#usr_coms").val('<?php echo $_SESSION['current_user']['comentarios']?>');
+            $('#usr_grupo').val(usuario['grupo']);
+            $("#usr_nombres").val(usuario['nombres']);
+            $("#usr_apPat").val(usuario['apPat']);
+            $("#usr_apMat").val(usuario['apMat']);
+            $("#usr_doc").val(usuario['docId']);
+            $("#usr_tel").val(usuario['telefonos']);
+            $("#usr_email").val(usuario['email']);
+
+            $("#usr_dir").val(usuario['direccion'].replace("/\r\n|\r|\n/",'\n'));
+            $("#usr_coms").val(usuario['comentarios'].replace("/\r\n|\r|\n/",'\n'));
         }
 
         function cancelEdit() {
@@ -81,10 +90,7 @@ verify_usr();
                 if ($("#editar").hasClass('selected')){
                     $('.usr_field').prop('disabled', false);
                     $("button.usr_field").fadeIn(500);
-                } else {
-                    cancelEdit();
-                }
-
+                } else cancelEdit();
             });
 
             $("#pass").click(function(){
@@ -93,24 +99,32 @@ verify_usr();
                 leftPanSelection($(this));
                 $(".cover").fadeIn(500);
                 $("#passChange").fadeIn(500);
-
             });
 
             $("#btnUsrGuardar").click(function(){
                 var datos = {
                     id: '<?php echo $_SESSION['current_user']['id']?>',
-                    usr_nombres: $("#usr_nombres").val(),
-                    usr_apPat: $("#usr_apPat").val(),
-                    usr_apMat: $("#usr_apMat").val(),
-                    usr_doc: $("#usr_doc").val(),
-                    usr_tel: $("#usr_tel").val(),
-                    usr_email: $("#usr_email").val(),
-                    usr_dir: $("#usr_dir").val(),
-                    usr_coms: $("#usr_coms").val()
+                    activo: $("#usr_activo").is(':checked'),
+                    grupo: $("#usr_grupo").val(),
+                    nombres: $("#usr_nombres").val(),
+                    apPat: $("#usr_apPat").val(),
+                    apMat: $("#usr_apMat").val(),
+                    docId: $("#usr_doc").val(),
+                    telefonos: $("#usr_tel").val(),
+                    email: $("#usr_email").val(),
+                    direccion: $("#usr_dir").val(),
+                    comentarios: $("#usr_coms").val()
                 };
-
-                guardar_datos(datos, "usuarios");
-                cancelEdit();
+                alert (datos['activo']);
+                if (!datos['activo']){
+                    if (confirm("Al quedar inactivo su usuario esta sesión se cerrará.")){
+                        guardar_datos(datos, "usuarios");
+                        location.reload(true);
+                    }
+                } else {
+                    guardar_datos(datos, "usuarios");
+                    cancelEdit();
+                }
             });
 
             $("#btnUsrCancelar").click(function(){
@@ -118,8 +132,6 @@ verify_usr();
             });
 
             $("#btnPassGuardar").click(function(){
-
-                var usr = '<?php echo $_SESSION['current_user']['usuario']?>';
                 var oldPass = $('#oldPass').val();
                 var newPass1 = $("#newPass1").val();
                 var newPass2 = $("#newPass2").val();
@@ -128,6 +140,7 @@ verify_usr();
                 $("#passChange").fadeOut(500);
 
                 if (newPass1 == newPass2){
+                    var usr = '<?php echo $_SESSION['current_user']['usuario']?>';
                     if (evalLogin (usr, oldPass, 'chPass')){
                         alert("everything was approved");
                         $(".cover").fadeOut(500);
@@ -142,7 +155,6 @@ verify_usr();
 
             $(".btnCloseMB").click(function(){
                 leftPanSelection($("#pass"));
-                console.log("MRC $(this).parent()",$(this).parent());
                 hidePopup($(this).parent());
             });
         }
@@ -209,13 +221,10 @@ verify_usr();
                     </div>
                 </td>
                 <td> &nbsp;&nbsp;&nbsp;
-                <label>Grupo
-                    <select class="usr_field" id="usr_grupo" disabled>
-                        <option>Select 1</option>
-                        <option>Select 2 Select 2</option>
-                        <option>Select 3</option>
-                        <option>Select 4</option>
-                    </select></label>
+                    <label>Grupo
+                        <select class="usr_field" id="usr_grupo" disabled></select>
+                    </label>
+                </td>
             </tr>
         </table>
         <br/><br/><br/><br/>

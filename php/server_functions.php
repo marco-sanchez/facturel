@@ -12,6 +12,10 @@ if(isset($_POST['datos']) and isset($_POST['tabla'])) {
     guardar_datos($_POST['datos'], $_POST['tabla']);
 }
 
+if(isset($_POST['tabla']) and isset($_POST['ids'])) {
+    leer_datos($_POST['tabla'], $_POST['ids']);
+}
+
 function validate_user($login_values){
     $aResult = array();
     $SQL='';
@@ -30,9 +34,7 @@ function validate_user($login_values){
     $res = SQL_exec($SQL);
 
     if ($res && $res['activo']){
-        if ($login_values['axn']=='login'){
-            $_SESSION["current_user"] = $res;
-        }
+        $_SESSION["current_user"] = $res;
         session_regenerate_id(true);
         session_write_close();
         $aResult['validation'] = true;
@@ -46,14 +48,14 @@ function validate_user($login_values){
 }
 
 function verify_usr(){
-    if(isset($_SESSION['current_user'])) {
+    if(isset($_SESSION['current_user']) && $_SESSION['current_user']['activo']) {
         $login_values = [
             'usuario' => $_SESSION['current_user']['usuario'],
             'password' => $_SESSION['current_user']['password'],
             'axn' => 'verify'
         ];
 
-        if(!validate_user($login_values) || !$_SESSION['current_user']['activo'])
+        if(!validate_user($login_values))
             redir("index.php");
 
     } else redir("index.php");
@@ -97,12 +99,23 @@ function closeBD($Conn)
 }
 function ecrypt($s){for($x=0;$x<=10;$x++){$s=md5(md5(md5(md5(md5($s)))));}return $s;}
 // EJECUTA una consulta en MySql y retorna el resultado ////////////////////////////////////
-function SQL_exec($SQL_query)
+function SQL_exec($sql)
 {
-    $CXN = openBD();
-    $res = mysql_query($SQL_query, $CXN);
-    closeBD($CXN);
-    return @mysql_fetch_array($res);
+    $CNX = openBD();
+    $result = mysql_query($sql);
+    $resArray = [];
+    while ($row = mysql_fetch_assoc($result)) {
+        array_push($resArray, $row);
+    }
+    closeBD($CNX);
+
+    // Si solo hay un registro, devolver solo datos
+    // y NO un array dentro de otro array
+    if (count($resArray) > 1){
+        return $resArray;
+    }else{
+        return $resArray[0];
+    }
 }
 
 // Redirecciona con JS /////////////////////////////////////////////////////////////////////
@@ -116,9 +129,44 @@ function msgJS ($msg){
 }
 
 function guardar_datos($datos, $tabla){
+    # TRUE: Editar registro existente | FALSE: Insertar nuevo registro
     if ($datos['id']) {
+        $keys = array_keys($datos);
+        $i = 0;
         foreach ($datos as $dato){
-            $dato_ejemplo = $dato;
+            if ($i > 0){
+                $SQL = "UPDATE ".$tabla." SET ".$keys[$i]." = '".$dato."' WHERE id = ".$datos['id'];
+                SQL_exec($SQL);
+            }
+            $i++;
         }
     }
+}
+
+function leer_datos($tabla, $ids){
+    if ($ids) {
+        if (gettype($ids) == "array"){
+            $SQL = "";
+            $i = 0;
+            foreach ($ids as $id){
+                if ($i == 0){
+                    $SQL = "SELECT * FROM ".$tabla." WHERE id = ".(int) $ids[$id];
+                } else {
+                    $SQL .= " OR id = ".(int) $ids[$id];
+                }
+                $i++;
+            }
+        } else {
+            $SQL = "SELECT * FROM ".$tabla." WHERE id= ".(int) $ids;
+        }
+
+    } else {
+        $SQL = "SELECT * FROM ".$tabla;
+    }
+    $sqlRes = SQL_exec($SQL);
+
+    // Si solo se encontró un registro,
+    // SQL_exec($SQL) retornara directamente los datos
+    echo json_encode($sqlRes);
+    return $sqlRes;
 }
