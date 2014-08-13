@@ -199,7 +199,7 @@ verify_usr();
     </div>
     <div class="top_menu">
             <span class="top_container">
-                <span class="usr_name">
+                <span class="usr_name" style="color: black; background-color: orange">
                     <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
                 </span>
                 &nbsp;&nbsp;
@@ -220,7 +220,7 @@ verify_usr();
     <div class="left_panel">
         <div class="lp_controls">
             <ul>
-                <li><a class="round_left" id="editar">Editar<br/>Datos</a></li>
+                <li><a class="round_left" id="editar">Editar Datos<br/>Personales</a></li>
                 <li><a class="round_left" id="usrPass">Usuario y Contraseña</a></li>
             </ul>
         </div>
