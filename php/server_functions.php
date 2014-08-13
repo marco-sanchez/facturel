@@ -182,20 +182,13 @@ function leer_datos($tabla, $ids){
             $SQL = "";
             $i = 0;
             foreach ($ids as $id){
-                if ($i == 0){
-                    $SQL = "SELECT * FROM ".$tabla." WHERE id = ".(int) $ids[$id];
-                } else {
-                    $SQL .= " OR id = ".(int) $ids[$id];
-                }
+                if ($i == 0) $SQL = "SELECT * FROM ".$tabla." WHERE id = ".(int) $ids[$id];
+                else $SQL .= " OR id = ".(int) $ids[$id];
                 $i++;
             }
-        } else {
-            $SQL = "SELECT * FROM ".$tabla." WHERE id= ".(int) $ids;
-        }
+        } else $SQL = "SELECT * FROM ".$tabla." WHERE id= ".(int) $ids;
+    } else $SQL = "SELECT * FROM ".$tabla;
 
-    } else {
-        $SQL = "SELECT * FROM ".$tabla;
-    }
     $sqlRes = SQL_exec($SQL);
     echo json_encode($sqlRes);
     return $sqlRes;

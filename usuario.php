@@ -30,14 +30,18 @@ verify_usr();
 
             });
             $("#salir").click(function(){
-                //Setting exp. date of "PHP session cookie" to year zero
-                document.cookie = 'PHPSESSID=; expires=Mon, 01-Jan-00 00:00:01 GMT;';
-                window.location = 'index.php';
+                salir();
             });
 
             selfLoadData();
             selfActions();
         });
+
+        function salir(){
+            //Setting exp. date of "PHP session cookie" to year zero
+            document.cookie = 'PHPSESSID=; expires=Mon, 01-Jan-00 00:00:01 GMT;';
+            window.location = 'index.php';
+        }
 
         function selfLoadData(){
             $('#usr_grupo').empty();
@@ -150,7 +154,10 @@ verify_usr();
                 if (evalLogin (usuario_actual['usuario'], oldPass, 'chPass')){
                     if (newUsr != ''){
                         if (newPass1 == newPass2 && newPass1 != ''){
-                            guardar_datos(datos, "usuarios");
+                            if(confirm("La sesión actual se cerrará.")){
+                                guardar_datos(datos, "usuarios");
+                                salir();
+                            }
                             $(".cover").fadeOut(500);
                             leftPanSelection($("#usrPass"));
                         } else msgBoxJS("Nueva contraseña no coincide o los campos están vacíos", $(".msgError"));

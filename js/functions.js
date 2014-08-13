@@ -68,7 +68,7 @@ function guardar_datos(datos, tabla){
             resp = res;
         }
     });
-    console.log(resp['ERROR']);
+    if (resp['ERROR'] != undefined) console.log(resp['ERROR']);
 }
 
 function leer_datos(tabla, ids){
@@ -87,6 +87,6 @@ function leer_datos(tabla, ids){
             resp = res;
         }
     });
-    console.log(resp['ERROR']);
-    return resp;
+    if (resp['ERROR'] != undefined) console.log(resp['ERROR']);
+    else return resp;
 }
