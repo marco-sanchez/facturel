@@ -49,23 +49,22 @@ verify_usr();
                 }));
             });
 
-            var usuario = leer_datos('usuarios', <?php echo $_SESSION['current_user']['id']?>);
+            var usuario_actual = leer_datos('usuarios', <?php echo $_SESSION['current_user']['id']?>);
 
-            if (usuario['activo'] == 1)
+            if (usuario_actual['activo'] == 1)
                 $("#usr_activo").prop('checked', true);
             else
                 $("#usr_activo").prop('checked', false);
 
-            $('#usr_grupo').val(usuario['grupo']);
-            $("#usr_nombres").val(usuario['nombres']);
-            $("#usr_apPat").val(usuario['apPat']);
-            $("#usr_apMat").val(usuario['apMat']);
-            $("#usr_doc").val(usuario['docId']);
-            $("#usr_tel").val(usuario['telefonos']);
-            $("#usr_email").val(usuario['email']);
-
-            $("#usr_dir").val(usuario['direccion'].replace("/\r\n|\r|\n/",'\n'));
-            $("#usr_coms").val(usuario['comentarios'].replace("/\r\n|\r|\n/",'\n'));
+            $('#usr_grupo').val(usuario_actual['grupo']);
+            $("#usr_nombres").val(usuario_actual['nombres']);
+            $("#usr_apPat").val(usuario_actual['apPat']);
+            $("#usr_apMat").val(usuario_actual['apMat']);
+            $("#usr_doc").val(usuario_actual['docId']);
+            $("#usr_tel").val(usuario_actual['telefonos']);
+            $("#usr_email").val(usuario_actual['email']);
+            $("#usr_dir").val(usuario_actual['direccion'].replace("/\r\n|\r|\n/",'\n'));
+            $("#usr_coms").val(usuario_actual['comentarios'].replace("/\r\n|\r|\n/",'\n'));
         }
 
         function cancelEdit() {
@@ -103,8 +102,9 @@ verify_usr();
             });
 
             $("#btnUsrGuardar").click(function(){
+                var usuario_actual = leer_datos('usuarios', <?php echo $_SESSION['current_user']['id']?>);
                 var datos = {
-                    id: '<?php echo $_SESSION['current_user']['id']?>',
+                    id: usuario_actual['id'],
                     activo: $("#usr_activo").is(':checked'),
                     grupo: $("#usr_grupo").val(),
                     nombres: $("#usr_nombres").val(),
@@ -137,15 +137,20 @@ verify_usr();
                 var newUsr = $("#newUsr").val();
                 var newPass1 = $("#newPass1").val();
                 var newPass2 = $("#newPass2").val();
-                var usr = '<?php echo $_SESSION['current_user']['usuario']?>';
+                var usuario_actual = leer_datos('usuarios', <?php echo $_SESSION['current_user']['id']?>);
+                var datos = {
+                    id: usuario_actual['id'],
+                    usuario: newUsr,
+                    password: newPass1
+                };
 
                 $('#passChange input').val('');
                 $("#passChange").fadeOut(500);
 
-                if (evalLogin (usr, oldPass, 'chPass')){
+                if (evalLogin (usuario_actual['usuario'], oldPass, 'chPass')){
                     if (newUsr != ''){
                         if (newPass1 == newPass2 && newPass1 != ''){
-                            alert("everything was approved");
+                            guardar_datos(datos, "usuarios");
                             $(".cover").fadeOut(500);
                             leftPanSelection($("#usrPass"));
                         } else msgBoxJS("Nueva contraseña no coincide o los campos están vacíos", $(".msgError"));

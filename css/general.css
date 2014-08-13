@@ -21,7 +21,7 @@ body {
 }
 
 [draggable=true] {
-    cursor: move;
+    /*cursor: move;*/
 }
 
 div {

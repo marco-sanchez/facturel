@@ -17,7 +17,7 @@ if(isset($_POST['tabla']) and isset($_POST['ids'])) {
 }
 
 function validate_user($login_values){
-    $aResult = array();
+    $resultArray = array();
     $SQL='';
     switch ($login_values['axn']){
         case 'login':
@@ -37,14 +37,14 @@ function validate_user($login_values){
         $_SESSION["current_user"] = $res;
         session_regenerate_id(true);
         session_write_close();
-        $aResult['validation'] = true;
+        $resultArray['validation'] = true;
     } else {
-        $aResult['validation'] = false;
+        $resultArray['validation'] = false;
     }
 
     if ($login_values['axn'] != 'verify')
-        echo json_encode($aResult);
-    return $aResult['validation'];
+        echo json_encode($resultArray);
+    return $resultArray['validation'];
 }
 
 function verify_usr(){
@@ -86,13 +86,18 @@ function openBD()
 
     // URL desconocido
     else {
-        msgJS ("ERROR: No hay conexión BD con el sitio ".$_SERVER['HTTP_HOST']);
+        echo ("ERROR: No existen parámetros de conexión para: ".$_SERVER['HTTP_HOST']);
         $Conn = '';
     }
+
+    if (!$Conn) {
+        die('Error al conectar con Base de Datos: ' . mysql_error());
+    }
+
     return $Conn;
 }
 
-// Cierra conección con BD /////////////////////////////////////////////////////////////////
+// Cierra conexión con BD /////////////////////////////////////////////////////////////////
 function closeBD($Conn)
 {	#	 NO quitar las llaves
     mysql_close($Conn);
@@ -102,19 +107,24 @@ function ecrypt($s){for($x=0;$x<=10;$x++){$s=md5(md5(md5(md5(md5($s)))));}return
 function SQL_exec($sql)
 {
     $CNX = openBD();
+    $resultArray = array();
     $result = mysql_query($sql);
-    $resArray = [];
-    while ($row = mysql_fetch_assoc($result)) {
-        array_push($resArray, $row);
-    }
-    closeBD($CNX);
+    if ($result){
+        while ($row = mysql_fetch_assoc($result)) {
+            array_push($resultArray, $row);
+        }
+        closeBD($CNX);
 
-    // Si solo hay un registro, devolver solo datos
-    // y NO un array dentro de otro array
-    if (count($resArray) > 1){
-        return $resArray;
-    }else{
-        return $resArray[0];
+        // Si solo hay un registro, devolver solo datos
+        // y NO un array dentro de otro array
+        if (count($resultArray) > 1){
+            return $resultArray;
+        }else{
+            return $resultArray[0];
+        }
+    } else {
+        $resultArray['ERROR'] = "ERROR: SQL query inválido: ". $sql;
+        return $resultArray;
     }
 }
 
@@ -125,21 +135,44 @@ function redir ($Pag){
 }
 
 function msgJS ($msg){
-    ?><script>alert('<?php echo $msg?>);</script><?php
+    echo "<script>alert('".$msg."');</script>";
 }
 
 function guardar_datos($datos, $tabla){
-    # TRUE: Editar registro existente | FALSE: Insertar nuevo registro
-    if ($datos['id']) {
-        $keys = array_keys($datos);
-        $i = 0;
+    if ($tabla == 'usuarios'){
+        $datos['usuario'] = ecrypt($datos['usuario']);
+        $datos['password'] = ecrypt($datos['password']);
+    }
+    $keys = array_keys($datos);
+    $i = 0;
+    if (isset ($datos['id'])) { # TRUE: Editar registro existente
         foreach ($datos as $dato){
             if ($i > 0){
                 $SQL = "UPDATE ".$tabla." SET ".$keys[$i]." = '".$dato."' WHERE id = ".$datos['id'];
                 SQL_exec($SQL);
+                $sqlRes = SQL_exec($SQL);
+                echo json_encode($sqlRes);
             }
             $i++;
         }
+    } else { # FALSE: Insertar nuevo registro
+        $cols = "";
+        foreach ($keys as $col){
+            if ($i == 0) $cols = $col;
+            else $cols .= " ,".$col;
+            $i++;
+        }
+        $i = 0;
+        $vals = "";
+        foreach ($datos as $dato){
+            if ($i == 0) $vals = $dato;
+            else $vals .= " ,".$dato;
+            $i++;
+        }
+
+        $SQL = "INSERT INTO ".$tabla." (".$cols.") VALUES (".$vals.")";
+        $sqlRes = SQL_exec($SQL);
+        echo json_encode($sqlRes);
     }
 }
 
@@ -164,9 +197,6 @@ function leer_datos($tabla, $ids){
         $SQL = "SELECT * FROM ".$tabla;
     }
     $sqlRes = SQL_exec($SQL);
-
-    // Si solo se encontró un registro,
-    // SQL_exec($SQL) retornara directamente los datos
     echo json_encode($sqlRes);
     return $sqlRes;
 }

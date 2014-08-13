@@ -49,6 +49,12 @@ function leftPanSelection (elemento){
 }
 
 function guardar_datos(datos, tabla){
+    if (tabla == 'usuarios'){
+        datos['usuario'] = $.md5(datos['usuario']);
+        datos['password'] = $.md5(datos['password']);
+    }
+
+    var resp = false;
     $.ajax({
         url: 'php/server_functions.php',
         type: 'POST',
@@ -58,10 +64,11 @@ function guardar_datos(datos, tabla){
             datos: datos,
             tabla: tabla
         },
-        success: function(resp){
-            return true;
+        success: function(res){
+            resp = res;
         }
     });
+    console.log(resp['ERROR']);
 }
 
 function leer_datos(tabla, ids){
@@ -76,9 +83,10 @@ function leer_datos(tabla, ids){
             tabla: tabla,
             ids: ids
         },
-        success: function(response){
-            resp = response;
+        success: function(res){
+            resp = res;
         }
     });
+    console.log(resp['ERROR']);
     return resp;
 }
