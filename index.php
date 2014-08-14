@@ -26,44 +26,25 @@ ob_start();
                     if (usr.trim() != '' && pass.trim() != '')
                         if (evalLogin ($("#usr").val(), $("#pass").val(), 'login'))
                             window.location = 'main.php';
-                        else
-                            msgBoxJS("Los datos introducidos no<br>corresponden a un usuario activo.", $(".msgError"));
-                    else
-                        msgBoxJS("Debe insertar ambos datos.", $(".msgError"));
+                        else {
+                            msgError(
+                                "Error en Login",
+                                "Los datos introducidos no corresponden a un usuario activo."
+                            );
+                        }
+                    else {
+                        msgError(
+                            "Error en Login",
+                            "Debe insertar ambos datos."
+                        );
+                    }
                 });
 
-                $(".btnCloseMB").click(function(){
-                    $("#usr").val('');
-                    $("#pass").val('');
-                    $(".message").html('');
-                    $(".messageBox").hide();
-                    $(".cover").hide();
-                });
-            });
-
-            $(document).keyup(function(event){
-                 switch (event.keyCode) {
-                     case 13:
-                         $("#btnLogin").click();
-                     break;
-                     case 27:
-                         $(".btnCloseMB").click();
-                         $("#usr").focus();
-                     break;
-                     default:
-                         // do nothing
-                 }
             });
         </script
     </head>
 
 <body>
-    <div class="cover"></div>
-    <div class="messageBox msgError">
-        <img class='btnCloseMB' src='img/close.png'> <br/>
-        <span class="message"></span>
-    </div>
-
     <div class="index_header">
         <b>SISTEMA DE FACTURACIÓN ELECTRÓNICA</b>
     </div>
@@ -85,5 +66,34 @@ ob_start();
     <div class="index_foot">
         Sistema desarrollado y distribuido por: <span class="cedempre"><b>CedEmpre s.r.l.</b></span> | tel: 2-245573 | La Paz - Bolivia
     </div>
+
+<!-- ####################### DIVS PARA MENSAJES -->
+    <div id="cover"></div>
+
+    <div class="msgBox" id="msgConfirmar">
+        <div class="msgTop">
+            <span class="msgTl">
+            </span>
+        </div>
+        <span class="msgTxt">
+        </span>
+        <div class="msgBottom">
+            <button class="btnSI"></button>
+            <button class="btnNO"></button>
+        </div>
+    </div>
+
+    <div class="msgBox" id="msgError">
+        <div class="msgTop">
+            <span class="msgTl">
+            </span>
+        </div>
+        <span class="msgTxt">
+        </span>
+        <div class="msgBottom">
+            <button class="btnSI">Aceptar</button>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -32,10 +32,33 @@ function evalLogin (ev_usr, ev_pass, ev_axn) {
     return res;
 }
 
-function msgBoxJS(msgTxt, msgElement){
-    $(".cover").fadeIn(500);
-    $(".message").html(msgTxt);
-    msgElement.fadeIn(500);
+function msgConfirmar(titulo, texto, btnSI, btnNO, funcSI, funcNO){
+    $("#cover").fadeIn(500);
+    $("#msgConfirmar").fadeIn(500);
+    $(".msgTl").html(titulo);
+    $(".msgTxt").html(texto);
+    $(".btnSI").html(btnSI);
+    $(".btnNO").html(btnNO);
+    $(".btnSI").off("click").click(function() {
+        $("#cover").fadeOut(500);
+        $("#msgConfirmar").fadeOut(500);
+        funcSI();
+    });
+    $(".btnNO").off("click").click(function() {
+        $(".msgBox").hide();
+        funcNO();
+    });
+}
+
+function msgError(titulo, texto){
+    $("#cover").fadeIn(500);
+    $("#msgError").fadeIn(500);
+    $(".msgTl").html(titulo);
+    $(".msgTxt").html(texto);
+    $(".btnSI").off("click").click(function() {
+        $("#cover").fadeOut(500);
+        $("#msgError").fadeOut(500);
+    });
 }
 
 function leftPanSelection (elemento){

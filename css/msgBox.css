@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-div.cover{
+#cover{
     display: none;
     position: fixed;
     top: 0;
@@ -8,53 +8,71 @@ div.cover{
     width: 100%;
     height: 100%;
     background-color: gray;
-    z-index:1000;
-    opacity:.40;
+    z-index: 1000;
+    opacity: .40;
 }
 
-div.messageBox{
-    display: none;
-    border: solid 5px black;
-    color: white;
-    z-index:1002;
-
+.msgBox{
     /* CENTER DIV IN SCREEN
     margin-left = -(width / 2);
     margin-top: = -(height / 2); */
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
-    width: 500px;
-    height: 100px;
-    margin-left: -250px;
-    margin-top: -50px;
+    width: 300px;
+    height: 200px;
+    margin-left: -150px;
     /************************/
 
-    padding-bottom: 30px;
-    } .btnCloseMB {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      cursor: pointer;
-      width: 20px;
-      height: 20px;
-      padding: 0;
-
-      background-color: black;
-      border: solid 2px black;
-      border-radius: 15px;
-
-    } .btnCloseMB:hover {
-        background-color: black;
-        border: solid 2px yellow;
-        cursor: pointer;
-        } .btnCloseMB:active {
+    display: none;
+    color:black;
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 1100;
 }
 
-.msgError{
-    background-color: #c95a58;
+.msgTop{
+    position: absolute;
+    left:0;
+    top: 0;
+    width: 94%;
+    text-align: left;
+    padding: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .msgTxt{
-    background-color: #323232;
+    position: absolute;
+    text-align: left;
+    top: 20%;
+}
+
+.msgBottom{
+    position: absolute;
+    left:0;
+    bottom: 0;
+    width: 94%;
+    text-align: right;
+    padding: 10px;
+    color: white;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+#msgConfirmar{
+    border: solid 5px #dd7f00;
+}
+#msgConfirmar .msgTop, #msgConfirmar .msgBottom{
+    background-color: #dd7f00;
+}
+
+#msgError{
+    border: solid 5px darkred;
+}
+
+#msgError .msgTop, #msgError .msgBottom{
+    background-color: darkred;
 }
