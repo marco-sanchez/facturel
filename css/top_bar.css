@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* Top Bar elements */
+
+#top_name_help_out {
+    position: absolute;
+    right: 0;
+}
+
+#top_usr_name {
+    font-size: 14px;
+}
+
+#tittle {
+    position: absolute;
+    top: 30%;
+    left: 20%;
+
+    font-size: 20px;
+    font-weight: normal;
+
+    background-color: black;
+}
+
+#top_menu {
+    position: absolute;
+    top: 70%;
+    right: 0;
+}
+

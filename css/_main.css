@@ -2,10 +2,10 @@
 /* Import CSS files */
 
 @import 'general.css';
-@import 'top_menu.css';
-@import 'left_panel.css';
 @import 'msgBox.css';
-@import 'index.css';
-@import 'scrollbars.css';
-@import 'usuario.css';
-@import 'check.css'
+@import 'containers.css';
+@import 'menu.css';
+@import 'top_bar.css';
+@import 'effects.css';
+@import 'content.css';
+@import 'buttons.css';
