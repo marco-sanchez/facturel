@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+button {
+    padding: 5px 10px;
+    color: lightgrey;
+    font-size: 16px;
+    font-family: "Lucida Console", Monaco, monospace;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+
+    border: 1px solid grey;
+    background: black;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(grey), to(black)); /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient(top, grey, black); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(top, grey, black); /* Firefox 3.6+ */
+    background: -ms-linear-gradient(top, grey, black); /* IE 10 */
+    background: -o-linear-gradient(top, grey, black); /* Opera 11.10+ */
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    border-radius: 24px;
+    -webkit-box-shadow: black 0 1px 0;
+    -moz-box-shadow: black 0 1px 0;
+    box-shadow: black 0 1px 0;
+}
+button:hover {
+    color: white;
+    border: 1px solid white;
+}
+button:active {
+    background: grey;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(black), to(grey)); /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient(top, black, grey); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(top, black), grey); /* Firefox 3.6+ */
+    background: -ms-linear-gradient(top, black, grey); /* IE 10 */
+    background: -o-linear-gradient(top, black, grey); /* Opera 11.10+ */
+}
+
+button.btn_negativo {
+    color: pink;
+    border-color: pink;
+
+    background: darkred;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(indianred), to(darkred)); /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient(top, indianred, darkred); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(top, indianred, darkred); /* Firefox 3.6+ */
+    background: -ms-linear-gradient(top, indianred, darkred); /* IE 10 */
+    background: -o-linear-gradient(top, indianred, darkred); /* Opera 11.10+ */
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    border-radius: 24px;
+    -webkit-box-shadow: black 0 1px 0;
+    -moz-box-shadow: black 0 1px 0;
+    box-shadow: black 0 1px 0;
+
+}
+
+button.btn_negativo:hover {
+    color: white;
+    border: 1px solid white;
+}
+
+button.btn_negativo:active {
+    background: indianred;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(darkred), to(indianred)); /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient(top, darkred, indianred); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(top, darkred), indianred); /* Firefox 3.6+ */
+    background: -ms-linear-gradient(top, darkred, indianred); /* IE 10 */
+    background: -o-linear-gradient(top, darkred, indianred); /* Opera 11.10+ */
+}

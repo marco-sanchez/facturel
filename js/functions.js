@@ -113,3 +113,19 @@ function leer_datos(tabla, ids){
     if (resp['ERROR'] != undefined) console.log(resp['ERROR']);
     else return resp;
 }
+
+function set_defaults(){
+    $("#top_usr_name").click(function(){
+        window.location = 'usuario.php';
+    });
+
+    $("#ayuda").click(function(){
+
+    });
+    $("#salir").click(function(){
+        //Setting exp. date of "PHP session cookie" to year zero
+        document.cookie = 'PHPSESSID=; expires=Mon, 01-Jan-00 00:00:01 GMT;';
+        window.location = 'index.php';
+    });
+}
+

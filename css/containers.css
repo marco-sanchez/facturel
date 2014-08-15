@@ -7,6 +7,7 @@
     left: 0;
     width: 20%;
     height: 20%;
+    box-sizing: border-box;
 
     overflow: hidden;
 
@@ -22,6 +23,7 @@
     right: 0;
     width: 80%;
     height: 10%;
+    box-sizing: border-box;
 
     overflow: visible;
     text-align: right;
@@ -33,11 +35,20 @@
     position: absolute;
     float:left;
     top: 20%;
-    left: 0;
+    left: -5px; /* => shadow difference */
     width: 20%;
     height: 75%;
+    box-sizing: border-box;
 
     background-color: darkorange;
+
+    border-top-right-radius: 15px;
+    -webkit-border-top-right-radius: 15px;
+    -moz-border-radius-topright: 15px;
+
+    -webkit-box-shadow: 0 0 1px 5px orange;
+    -moz-box-shadow: 0 0 1px 5px orange;
+    box-shadow: 0 0 1px 5px orange;
 
     z-index: 2;
 }
@@ -49,10 +60,19 @@
     right: 0;
     width: 80%;
     height: 85%;
+    box-sizing: border-box;
 
     background-color: rgb(30,30,30);
 
     z-index: 1;
+
+    border-top-left-radius: 15px;
+    -webkit-border-top-left-radius: 15px;
+    -moz-border-radius-topleft: 15px;
+
+    -webkit-box-shadow: 0 0 1px 5px rgb(50,50,50);
+    -moz-box-shadow: 0 0 1px 5px rgb(50,50,50);
+    box-shadow: 0 0 1px 5px rgb(50,50,50);
 }
 
 #div_footer {
@@ -62,8 +82,9 @@
     left: 0;
     width: 100%;
     height: 5%;
+    box-sizing: border-box;
 
     font-size: 12px;
 
-    z-index: 2;
+    z-index: 3;
 }

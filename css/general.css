@@ -21,6 +21,17 @@ body {
 
 div{
     overflow: auto;
-    box-sizing: border-box;
     padding: 5px;
+}
+
+input {
+    height: 30px;
+    vertical-align: top;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 20px;
+    color: #000000;
+    padding-left: 10px;
+
+    border: solid black;
+    border-radius: 10px;
 }

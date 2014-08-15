@@ -49,15 +49,15 @@
 <!-- ############################################################### -->
 <!-- ################## DIÁLOGOS & POPUPS ########################## -->
 
-    <div class="cover"></div>
+    <div id="cover"></div>
 
     <div class="msgBox" id="msgConfirmar">
         <div class="msgTop">
-            <span class="msgTl">
-            </span>
+                <span class="msgTl">
+                </span>
         </div>
-        <span class="msgTxt">
-        </span>
+            <span class="msgTxt">
+            </span>
         <div class="msgBottom">
             <button class="btnSI"></button>
             <button class="btnNO"></button>
@@ -66,12 +66,12 @@
 
     <div class="msgBox" id="msgError">
         <div class="msgTop">
-            <span class="msgTl">
-            </span>
+                <span class="msgTl">
+                </span>
         </div>
-        <span class="msgTxt">
-        </span>
-        <div class="msgBottom">
+            <span class="msgTxt">
+            </span>
+        <div class="msgFooter">
             <button class="btnSI">Aceptar</button>
         </div>
     </div>

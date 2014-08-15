@@ -9,17 +9,11 @@
 #top_usr_name {
     font-size: 14px;
 }
-
-#tittle {
-    position: absolute;
-    top: 30%;
-    left: 20%;
-
-    font-size: 20px;
-    font-weight: normal;
-
-    background-color: black;
-}
+    #top_usr_name:hover{
+        cursor: pointer;
+        color: darkorange;
+        font-weight: bold;
+    }
 
 #top_menu {
     position: absolute;

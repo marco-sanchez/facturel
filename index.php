@@ -40,17 +40,26 @@ ob_start();
                     }
                 });
 
+                $(document).keyup(function(event){
+                    switch (event.keyCode) {
+                        case 13:
+                            $("#btnLogin").click();
+                            break;
+                        default:
+                        // do nothing
+                    }
+                });
             });
         </script
     </head>
 
-<body>
-    <div class="index_header">
+<body style="text-align: center">
+    <div id="index_header">
         <b>SISTEMA DE FACTURACIÓN ELECTRÓNICA</b>
     </div>
-    <br>
-    <div class="index_body">
-        <table class="login" border="0" align="center">
+
+    <div id="index_content">
+        <table id="login" border="0" align="center">
             <tr>
                 <td align="left"><label>Usuario<br/><input id="usr" maxlength="20" size="20"/></label></td>
             </tr>
@@ -62,12 +71,14 @@ ob_start();
             </tr>
         </table>
     </div>
-    <br>
-    <div class="index_foot">
+
+    <div id="div_footer">
         Sistema desarrollado y distribuido por: <span class="cedempre"><b>CedEmpre s.r.l.</b></span> | tel: 2-245573 | La Paz - Bolivia
     </div>
 
-<!-- ####################### DIVS PARA MENSAJES -->
+<!-- ############################################################### -->
+<!-- ################## DIÁLOGOS & POPUPS ########################## -->
+
     <div id="cover"></div>
 
     <div class="msgBox" id="msgConfirmar">
@@ -90,8 +101,8 @@ ob_start();
         </div>
         <span class="msgTxt">
         </span>
-        <div class="msgBottom">
-            <button class="btnSI">Aceptar</button>
+        <div class="msgFooter">
+            <button class="btnSI btn_negativo">Aceptar</button>
         </div>
     </div>
 

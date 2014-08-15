@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+#index_content {
+    position: relative;
+    top: 20%;
+}
+
+#login {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    background-color: rgb(20,20,20);
+    -webkit-box-shadow: 0 0 5px 5px rgb(50,50,50);
+    -moz-box-shadow: 0 0 5px 5px rgb(50,50,50);
+    box-shadow: 0 0 5px 5px rgb(50,50,50);
+}
+
