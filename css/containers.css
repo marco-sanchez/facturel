@@ -40,15 +40,15 @@
     height: 75%;
     box-sizing: border-box;
 
-    background-color: darkorange;
+    background-color: grey;
 
     border-top-right-radius: 15px;
     -webkit-border-top-right-radius: 15px;
     -moz-border-radius-topright: 15px;
 
-    -webkit-box-shadow: 0 0 1px 5px orange;
-    -moz-box-shadow: 0 0 1px 5px orange;
-    box-shadow: 0 0 1px 5px orange;
+    -webkit-box-shadow: 0 0 1px 5px rgb(50,50,50);
+    -moz-box-shadow: 0 0 1px 5px rgb(50,50,50);
+    box-shadow: 0 0 1px 5px rgb(50,50,50);
 
     z-index: 2;
 }

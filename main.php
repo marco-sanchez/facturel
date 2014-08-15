@@ -42,7 +42,7 @@ verify_usr();
 
         <div id="top_menu" class="horizontal_menu">
             <ul>
-                <li><a class="round_left selected" href="">Ventas</a></li>
+                <li><a class="round_left selected" href="#">Ventas</a></li>
                 <li><a href="productos.php">Productos</a></li>
                 <li><a href="clientes.php">Clientes</a></li>
                 <li><a class="round_right" href="reportes.php">Reportes</a></li>
@@ -50,7 +50,7 @@ verify_usr();
         </div>
     </div>
 
-    <div id="div_left" class="">
+    <div id="div_left" class="vertical_menu">
 
     </div>
 

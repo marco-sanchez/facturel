@@ -1,47 +1,26 @@
 <?php
-if(!isset($_SESSION))
-    session_start();
-ob_start();
+    if(!isset($_SESSION))
+        session_start();
+        ob_start();
 ?>
 <!DOCTYPE html>
 <?php
-include (__DIR__."/php/server_functions.php");
-verify_usr();
+    include (__DIR__."/php/server_functions.php");
+    verify_usr();
 ?>
 <html>
 <head>
     <title>FACTUREL</title>
-
     <meta charset="UTF-8"/>
-
     <link rel="stylesheet" type="text/css" href="css/_main.css">
-
     <script src="js/_main.js"></script>
+
     <script>
         $(document).ready(function(){
-
-            $(".messageBox").addClass("ui-widget-content");
-
-            $(".usr_name").click(function(){
-                window.location = 'usuario.php';
-            });
-
-            $("#ayuda").click(function(){
-
-            });
-            $("#salir").click(function(){
-                salir();
-            });
-
+            set_defaults();
             selfLoadData();
             selfActions();
         });
-
-        function salir(){
-            //Setting exp. date of "PHP session cookie" to year zero
-            document.cookie = 'PHPSESSID=; expires=Mon, 01-Jan-00 00:00:01 GMT;';
-            window.location = 'index.php';
-        }
 
         function selfLoadData(){
             $('#usr_grupo').empty();
@@ -69,21 +48,6 @@ verify_usr();
             $("#usr_email").val(usuario_actual['email']);
             $("#usr_dir").val(usuario_actual['direccion'].replace("/\r\n|\r|\n/",'\n'));
             $("#usr_coms").val(usuario_actual['comentarios'].replace("/\r\n|\r|\n/",'\n'));
-        }
-
-        function cancelEdit() {
-            if ($("#editar").hasClass('selected')){
-                leftPanSelection($("#editar"));
-            }
-            selfLoadData();
-            $('.usr_field').prop('disabled', true);
-            $("button.usr_field").fadeOut(500);
-        }
-
-        function hidePopup(element) {
-            element.hide();
-            $(".message").html('');
-            $(".cover").hide();
         }
 
         function selfActions(){
@@ -171,66 +135,67 @@ verify_usr();
             });
         }
 
-    </script>
+        function cancelEdit() {
+            if ($("#editar").hasClass('selected')){
+                leftPanSelection($("#editar"));
+            }
+            selfLoadData();
+            $('.usr_field').prop('disabled', true);
+            $("button.usr_field").fadeOut(500);
+        }
 
+        function hidePopup(element) {
+            element.hide();
+            $(".message").html('');
+            $(".cover").hide();
+        }
+
+    </script>
 </head>
 
 <body>
-
-<div class="cover"></div>
-<div class="messageBox msgError">
-    <img class='btnCloseMB' src='img/close.png'> <br/>
-    <span class="message"></span>
-</div>
-<div class="messageBox msgTxt" id="passChange" draggable="true">
-    <img class='btnCloseMB' src='img/close.png'><br/>
-    <label>Contraseña actual<br/><input type="password" id="oldPass"/></label><br/><br/>
-    <hr/>
-    <label>Nuevo Usuario<br/><input type="text" id="newUsr"/></label><br/><br/>
-    <label>Nueva contraseña<br/><input type="password" id="newPass1"/></label><br/><br/>
-    <label>Repetir contraseña<br/><input type="password" id="newPass2"/></label><br/><br/>
-    <br/>
-    <button class="btn_positivo" id="btnPassGuardar">Guardar</button>
-</div>
-
-<div class="top" >
-    <div class="logo_img" >
-        <img src="img/logo_cedempre.png" width="200"/>
+    <div id="div_logo">
+        <img src="img/logo_empresa.png" style="width: 60%">
     </div>
-    <div class="top_menu">
-            <span class="top_container">
-                <span class="usr_name" style="color: orange">
-                    <?php echo $_SESSION['current_user']['nombres'] . " " . $_SESSION['current_user']['apPat'] . " " . $_SESSION['current_user']['apMat'] ?>
-                </span>
-                &nbsp;&nbsp;
-                <button class="opt_button" id="ayuda">Ayuda</button>
-                <button class="opt_button btn_negativo" id="salir">Salir</button>
+
+    <div id="div_top">
+        <div id="top_name_help_out">
+            <span id="top_usr_name" class="selected">
+                <?php echo $_SESSION['current_user']['nombres']
+                    . " " . $_SESSION['current_user']['apPat']
+                    . " " . $_SESSION['current_user']['apMat'] ?>
             </span>
+            &nbsp;&nbsp;
+            <button class="opt_button" id="ayuda">Ayuda</button>
+            <button class="opt_button btn_negativo" id="salir">Salir</button>
+        </div>
 
-        <br/><br/>
-        <ul>
-            <li><a class="round_left" href="main.php">Ventas</a></li>
-            <li><a href="productos.php">Productos</a></li>
-            <li><a href="clientes.php">Clientes</a></li>
-            <li><a class="round_right" href="reportes.php">Reportes</a></li>
-        </ul>
-    </div>
-</div>
-<div class="central">
-    <div class="left_panel">
-        <div class="lp_controls">
+        <div id="top_menu" class="horizontal_menu">
             <ul>
-                <li><a class="round_left" id="editar">Editar Datos<br/>Personales</a></li>
-                <li><a class="round_left" id="usrPass">Usuario y Contraseña</a></li>
+                <li><a class="round_left" href="main.php">Ventas</a></li>
+                <li><a href="productos.php">Productos</a></li>
+                <li><a href="clientes.php">Clientes</a></li>
+                <li><a class="round_right" href="reportes.php">Reportes</a></li>
             </ul>
         </div>
     </div>
-    <div class="content">
-        <table class="" border="0" align="left">
+
+    <div id="div_left">
+        <div class="vertical_menu">
+            <ul>
+                <li><a class="round_corners" href="#" id="editar">Editar datos personales</a></li>
+                <li><a class="round_corners" href="#" id="usrPass">Cambiar usuario-contraseña</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="div_content" class="">
+        <table class="usr_table" border="0" align="left">
             <tr>
                 <td align="left">
-                    <div class="slideCheck">
-                        <input type="checkbox" class="usr_field" id="usr_activo" disabled/>
+                    <div class="chkSlide">
+                        <span class="chkSlide_txt" id="usr_activo_txt">Activo</span>
+                        <input id="usr_activo" class=".usr_field" type="checkbox" disabled/>
                         <label for="usr_activo"></label>
                     </div>
                 </td>
@@ -242,7 +207,7 @@ verify_usr();
             </tr>
         </table>
         <br/><br/><br/><br/>
-        <table class="" border="0" align="center">
+        <table class="usr_table" border="0" align="center">
             <tr>
                 <td align="left"><label>Nombres<br/><input class="usr_field" id="usr_nombres" maxlength="100" size="23" disabled/></label></td>
                 <td align="left"><label>Apellido Paterno<br/><input class="usr_field" id="usr_apPat" maxlength="100" size="23" disabled/></label></td>
@@ -254,18 +219,52 @@ verify_usr();
                 <td align="left"><label>e-mail<br/><input class="usr_field" id="usr_email" maxlength="100" size="23" disabled /></label></td>
             </tr>
             <tr>
-                <td align="left"><label>Dirección<br/><textarea class="usr_field" id="usr_dir" cols="19" rows="4" disabled></textarea></label></td>
-                <td align="left" colspan="2"><label>Comentarios<br/><textarea class="usr_field" id="usr_coms" cols="43" rows="4" disabled></textarea></label></td>
+                <td align="left"><label>Dirección<br/><textarea class="usr_field" id="usr_dir" cols="23" rows="4" disabled></textarea></label></td>
+                <td align="left" colspan="2"><label>Comentarios<br/><textarea class="usr_field" id="usr_coms" cols="49" rows="4" disabled></textarea></label></td>
             </tr>
             <tr>
                 <td align="center" colspan="3">
-                    <button class="usr_field btn_positivo" id="btnUsrGuardar">Guardar</button>
+                    <br/>
+                    <button class="usr_field" id="btnUsrGuardar">Guardar</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <button class="usr_field btn_negativo" id="btnUsrCancelar">Cancelar</button>
                 </td>
             <tr>
         </table>
     </div>
-</div>
+
+    <div id="div_footer">
+
+    </div>
+
+    <!-- ############################################################### -->
+    <!-- ################## DIÁLOGOS & POPUPS ########################## -->
+
+    <div id="cover"></div>
+
+    <div class="msgBox" id="msgConfirmar">
+        <div class="msgTop">
+                        <span class="msgTl">
+                        </span>
+        </div>
+                    <span class="msgTxt">
+                    </span>
+        <div class="msgBottom">
+            <button class="btnSI"></button>
+            <button class="btnNO"></button>
+        </div>
+    </div>
+
+    <div class="msgBox" id="msgError">
+        <div class="msgTop">
+                        <span class="msgTl">
+                        </span>
+        </div>
+                    <span class="msgTxt">
+                    </span>
+        <div class="msgFooter">
+            <button class="btnSI">Aceptar</button>
+        </div>
+    </div>
 </body>
 </html>

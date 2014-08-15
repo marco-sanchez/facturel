@@ -1,10 +1,6 @@
 @charset "utf-8";
 /* special effects assigned as classes */
 
-.opt_button{
-    font-size: 10px;
-}
-
 .round_corners {
     border-radius: 15px;
     -webkit-border-radius: 15px;

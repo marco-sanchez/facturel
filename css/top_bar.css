@@ -1,6 +1,10 @@
 @charset "utf-8";
 /* Top Bar elements */
 
+.opt_button{
+    font-size: 10px;
+}
+
 #top_name_help_out {
     position: absolute;
     right: 0;
@@ -9,7 +13,8 @@
 #top_usr_name {
     font-size: 14px;
 }
-    #top_usr_name:hover{
+    #top_usr_name:hover,
+    #top_usr_name.selected{
         cursor: pointer;
         color: darkorange;
         font-weight: bold;

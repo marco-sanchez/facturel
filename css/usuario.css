@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+.usr_table td{
+    height: 80px;
+}
+
+#usr_activo_txt{
+    left:14px;
+}
+
+.usr_field:disabled{
+    background-color: lightgrey;
+    color: black;
+}
+
+button.usr_field {
+    display: none;
+}

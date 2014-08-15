@@ -8,12 +8,13 @@
     overflow: hidden;
 }
 
-.horizontal_menu li {
+.horizontal_menu ul li {
     float: left;
+    cursor: pointer;
 }
 
-.horizontal_menu a:link,
-.horizontal_menu a:visited {
+.horizontal_menu ul li a:link,
+.horizontal_menu ul li a:visited {
     display: block;
     /*width: 120px;*/
     border: 2px solid gray;
@@ -33,12 +34,11 @@
     padding: 9px 18px;
 }
 
-.horizontal_menu a:hover{
+.horizontal_menu ul li a:hover{
     color: orange;
-    cursor: pointer;
 }
 
-.horizontal_menu a:active{
+.horizontal_menu ul li a:active{
     background: gray;
     background: -webkit-gradient(linear, left top, left bottom, from(black), to(gray));
     background: -webkit-linear-gradient(top, black, gray);
@@ -47,8 +47,55 @@
     background: -o-linear-gradient(top, black, gray);
 }
 
-.horizontal_menu a.selected{
+.horizontal_menu ul li a.selected{
     border-color: orange;
     color: orange;
+    cursor: pointer;
+}
+
+/* ####################################################################### */
+
+.vertical_menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.vertical_menu ul li {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.vertical_menu ul li a:link,
+.vertical_menu ul li a:visited {
+    display: block;
+    /*width: 120px;*/
+    border: 2px solid gray;
+    background: black;
+
+    color: white;
+    font-size: 12px;
+    font-family: "Lucida Console", Monaco, monospace;
+    text-decoration: none;
+    text-align: right;
+    vertical-align: middle;
+
+    padding: 9px 18px;
+}
+
+.vertical_menu ul li a:hover{
+    color: orange;
+}
+
+.vertical_menu ul li a:active{
+    background: #2b2b2b;
+
+}
+
+.vertical_menu ul li a.selected{
+    border-color: orange;
+    color: orange;
+    background: #2b2b2b;
     cursor: pointer;
 }
