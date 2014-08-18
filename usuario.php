@@ -85,10 +85,14 @@
                     comentarios: $("#usr_coms").val()
                 };
                 if (!datos['activo']){
-                    if (confirm("Al quedar inactivo su usuario, esta sesión se cerrará.")){
-                        guardar_datos(datos, "usuarios");
-                        location.reload(true);
-                    }
+                    msgConfirmar("Editar Datos", "Al desactivar su usuario la sesión deberá cerrarse.",
+                        "Cerrar Sesión", "Cancelar",
+                        function(){
+                            guardar_datos(datos, "usuarios");
+                            location.reload(true);
+                        },
+                        function(){}
+                    )
                 } else {
                     datos['activo'] = 1;
                     guardar_datos(datos, "usuarios");
@@ -195,7 +199,7 @@
                 <td align="left">
                     <div class="chkSlide">
                         <span class="chkSlide_txt" id="usr_activo_txt">Activo</span>
-                        <input id="usr_activo" class=".usr_field" type="checkbox" disabled/>
+                        <input id="usr_activo" class="usr_field" type="checkbox" disabled/>
                         <label for="usr_activo"></label>
                     </div>
                 </td>
@@ -244,11 +248,11 @@
 
     <div class="msgBox" id="msgConfirmar">
         <div class="msgTop">
-                        <span class="msgTl">
-                        </span>
+            <span class="msgTl">
+            </span>
         </div>
-                    <span class="msgTxt">
-                    </span>
+        <span class="msgTxt">
+        </span>
         <div class="msgBottom">
             <button class="btnSI"></button>
             <button class="btnNO"></button>
@@ -257,11 +261,11 @@
 
     <div class="msgBox" id="msgError">
         <div class="msgTop">
-                        <span class="msgTl">
-                        </span>
+            <span class="msgTl">
+            </span>
         </div>
-                    <span class="msgTxt">
-                    </span>
+        <span class="msgTxt">
+        </span>
         <div class="msgFooter">
             <button class="btnSI">Aceptar</button>
         </div>

@@ -100,7 +100,7 @@ input[type=checkbox] {
 }
 
 .chkSlide input[type=checkbox]:checked + label:after {
-    background: #00bf00;
+    background: #00ff00;
 }
 
 .chkSlide_txt {

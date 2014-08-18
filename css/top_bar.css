@@ -17,7 +17,6 @@
     #top_usr_name.selected{
         cursor: pointer;
         color: darkorange;
-        font-weight: bold;
     }
 
 #top_menu {

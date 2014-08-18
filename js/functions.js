@@ -110,7 +110,10 @@ function leer_datos(tabla, ids){
             resp = res;
         }
     });
-    if (resp['ERROR'] != undefined) console.log(resp['ERROR']);
+    if (resp['ERROR'] != undefined){
+        console.log(resp['ERROR']);
+        return false
+    }
     else return resp;
 }
 
