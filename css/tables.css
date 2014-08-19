@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+.list_table table{
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    -webkit-box-shadow:  0 2px 1px 5px rgba(242, 242, 242, 0.1);
+    box-shadow:  0 2px 1px 5px rgba(242, 242, 242, 0.1);
+}
+
+.zebra {
+    border: 1px solid grey;
+}
+
+.zebra td {
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+    padding: 10px;
+    text-align: left;
+}
+
+.zebra th, .zebra th:hover {
+    border: 1px solid grey;
+    padding: 20px;
+    background-color: black !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(grey), to(black)) !important;
+    background-image: -webkit-linear-gradient(top, grey, black) !important;
+    background-image:    -moz-linear-gradient(top, grey, black) !important;
+    background-image:     -ms-linear-gradient(top, grey, black) !important;
+    background-image:      -o-linear-gradient(top, grey, black) !important;
+    background-image:         linear-gradient(top, grey, black) !important;
+    color:white !important;
+    font-weight:normal;
+}
+
+.zebra tbody tr:nth-child(even) {
+    background: black !important;
+    color:white;
+}
+
+.zebra tr:hover *{
+    background-color: rgba(100, 50, 0, 0.5);
+    color: orange;
+    cursor: pointer;
+}
+
+.zebra tr {
+    background: #252525;
+    color:white;
+}

@@ -58,8 +58,56 @@ verify_usr();
     </div>
 </div>
 
-<div id="div_content" class="">
-
+<div id="div_content" class="list_table">
+    <div id="content_controls" class="horizontal_menu">
+        <ul>
+            <li><a class="round_left" href="#">Lista</a></li>
+            <li><a class="round_right" href="#">Individual</a></li>
+        </ul>
+    </div>
+    <table class="zebra">
+        <caption>Mi Tabla - Lista</caption>
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>02.06.2010</td>
+            <td>10:00</td>
+            <td>12:00</td>
+            <td>Cleaning</td>
+        </tr>
+        <tr>
+            <td>02.06.2010</td>
+            <td>12:00</td>
+            <td>15:00</td>
+            <td>Training</td>
+        </tr>
+        <tr>
+            <td>02.06.2010</td>
+            <td>15:00</td>
+            <td>17:00</td>
+            <td>Rest</td>
+        </tr>
+        <tr>
+            <td>02.06.2010</td>
+            <td>17:00</td>
+            <td>21:00</td>
+            <td>Work</td>
+        </tr>
+        <tr>
+            <td>02.06.2010</td>
+            <td>21:00</td>
+            <td>07:00</td>
+            <td>Sleep</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 <div id="div_footer">
