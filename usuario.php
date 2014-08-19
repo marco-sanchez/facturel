@@ -283,10 +283,6 @@
 
     <div id="cover"></div>
 
-    <div id="wait">
-        <img src="/img/waiting.gif"/>
-    </div>
-
     <div class="msgBox" id="msgConfirmar">
         <div class="msgTop">
             <span class="msgTl"></span>

@@ -5,8 +5,8 @@ ob_start();
 ?>
 <!DOCTYPE html>
 <?php
-include (__DIR__."/php/server_functions.php");
-verify_usr();
+    include (__DIR__."/php/server_functions.php");
+    verify_usr();
 ?>
 <html>
 <head>
@@ -20,7 +20,6 @@ verify_usr();
             set_defaults();
         });
     </script>
-
 </head>
 
 <body>
@@ -30,11 +29,11 @@ verify_usr();
 
     <div id="div_top">
         <div id="top_name_help_out">
-            <span id="top_usr_name">
-                <?php echo $_SESSION['current_user']['nombres']
-                    . " " . $_SESSION['current_user']['apPat']
-                    . " " . $_SESSION['current_user']['apMat'] ?>
-            </span>
+                <span id="top_usr_name" class="">
+                    <?php echo $_SESSION['current_user']['nombres']
+                        . " " . $_SESSION['current_user']['apPat']
+                        . " " . $_SESSION['current_user']['apMat'] ?>
+                </span>
             &nbsp;&nbsp;
             <button class="opt_button" id="ayuda">Ayuda</button>
             <button class="opt_button btn_negativo" id="salir">Salir</button>
@@ -50,8 +49,13 @@ verify_usr();
         </div>
     </div>
 
-    <div id="div_left" class="vertical_menu">
-
+    <div id="div_left">
+        <div class="vertical_menu">
+            <ul>
+                <li><a class="round_left" href="#" id="op1">Opción 1</a></li>
+                <li><a class="round_left" href="#" id="op2">Opción 2</a></li>
+            </ul>
+        </div>
     </div>
 
     <div id="div_content" class="">
@@ -62,35 +66,33 @@ verify_usr();
 
     </div>
 
-<!-- ############################################################### -->
-<!-- ################## DIÁLOGOS & POPUPS ########################## -->
+    <!-- ############################################################### -->
+    <!-- ################## DIÁLOGOS & POPUPS ########################## -->
 
     <div id="cover"></div>
 
     <div class="msgBox" id="msgConfirmar">
         <div class="msgTop">
-                    <span class="msgTl">
-                    </span>
+            <span class="msgTl"></span>
         </div>
-                <span class="msgTxt">
-                </span>
-        <div class="msgBottom">
+            <span class="msgTxt">
+            </span>
+        <div class="msgFooter">
             <button class="btnSI"></button>
-            <button class="btnNO"></button>
+            <button class="btnNO btn_negativo"></button>
         </div>
     </div>
 
     <div class="msgBox" id="msgError">
         <div class="msgTop">
-                    <span class="msgTl">
-                    </span>
-        </div>
-                <span class="msgTxt">
+                <span class="msgTl">
                 </span>
+        </div>
+            <span class="msgTxt">
+            </span>
         <div class="msgFooter">
             <button class="btnSI">Aceptar</button>
         </div>
     </div>
-
 </body>
 </html>
