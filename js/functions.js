@@ -45,7 +45,8 @@ function msgConfirmar(titulo, texto, btnSI, btnNO, funcSI, funcNO){
         funcSI();
     });
     $(".btnNO").off("click").click(function() {
-        $(".msgBox").hide();
+        $("#cover").fadeOut(500);
+        $("#msgConfirmar").fadeOut(500);
         funcNO();
     });
 }
@@ -72,11 +73,10 @@ function leftPanSelection (elemento){
 }
 
 function guardar_datos(datos, tabla){
-    if (tabla == 'usuarios'){
+    if (tabla == 'usuarios' && datos['usuario']){
         datos['usuario'] = $.md5(datos['usuario']);
         datos['password'] = $.md5(datos['password']);
     }
-
     var resp = false;
     $.ajax({
         url: 'php/server_functions.php',
@@ -87,6 +87,7 @@ function guardar_datos(datos, tabla){
             datos: datos,
             tabla: tabla
         },
+
         success: function(res){
             resp = res;
         }
@@ -97,6 +98,7 @@ function guardar_datos(datos, tabla){
 function leer_datos(tabla, ids){
     ids = ids || null;
     var resp = false;
+
     $.ajax({
         url: 'php/server_functions.php',
         type: 'POST',
@@ -106,6 +108,7 @@ function leer_datos(tabla, ids){
             tabla: tabla,
             ids: ids
         },
+
         success: function(res){
             resp = res;
         }

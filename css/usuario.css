@@ -16,3 +16,22 @@
 button.usr_field {
     display: none;
 }
+
+#usrPassChng{
+    font-size: 14px;
+    height: 300px;
+}
+
+    #usrPassChng input{
+        font-size: 14px;
+        height: 15px;
+    }
+    #usrPassChng button{
+        font-size: 14px;
+    }
+
+    #usrPassChng_tbl{
+        position: absolute;
+        left: 20%;
+        top: 10%;
+    }

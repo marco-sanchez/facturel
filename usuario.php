@@ -65,8 +65,8 @@
                 if ($("#editar").hasClass('selected'))
                     cancelEdit();
                 leftPanSelection($(this));
-                $(".cover").fadeIn(500);
-                $("#passChange").fadeIn(500);
+                $("#cover").fadeIn(500);
+                $("#usrPassChng").fadeIn(500);
             });
 
             $("#btnUsrGuardar").click(function(){
@@ -104,38 +104,44 @@
                 cancelEdit();
             });
 
-            $("#btnPassGuardar").click(function(){
+            $("#btnLoginChange").click(function(){
                 var oldPass = $('#oldPass').val();
                 var newUsr = $("#newUsr").val();
-                var newPass1 = $("#newPass1").val();
+                var newPass = $("#newPass").val();
                 var newPass2 = $("#newPass2").val();
                 var usuario_actual = leer_datos('usuarios', <?php echo $_SESSION['current_user']['id']?>);
                 var datos = {
                     id: usuario_actual['id'],
                     usuario: newUsr,
-                    password: newPass1
+                    password: newPass
                 };
-
-                $('#passChange input').val('');
-                $("#passChange").fadeOut(500);
 
                 if (evalLogin (usuario_actual['usuario'], oldPass, 'chPass')){
                     if (newUsr != ''){
-                        if (newPass1 == newPass2 && newPass1 != ''){
-                            if(confirm("La sesión actual se cerrará.")){
-                                guardar_datos(datos, "usuarios");
-                                salir();
-                            }
-                            $(".cover").fadeOut(500);
-                            leftPanSelection($("#usrPass"));
-                        } else msgBoxJS("Nueva contraseña no coincide o los campos están vacíos", $(".msgError"));
-                    } else msgBoxJS("Inserte nuevo usuario o repita el usuario actual", $(".msgError"));
-                } else msgBoxJS("'Contraseña Actual' no es válida", $(".msgError"));
+                        if (newPass == newPass2 && newPass != ''){
+                            msgConfirmar("Usuario & Contraseña", "La sesión actual se cerrará.",
+                                "Cerrar Sesión", "Cancelar",
+                                function(){
+                                    guardar_datos(datos, "usuarios");
+                                    salir();
+                                },
+                                function(){
+                                    $('#usrPassChng_tbl input').val('');
+                                    $("#cover").fadeOut(500);
+                                    $("#usrPassChng").fadeOut(500);
+                                    leftPanSelection($("#usrPass"));
+                                }
+                            )
+                        } else msgError("Error en datos", "Nueva contraseña no coincide o los campos están vacíos");
+                    } else msgError("Error en datos", "Inserte nuevo usuario o repita el usuario actual");
+                } else msgError("Error en datos", "'Contraseña Actual' no es válida");
             });
 
-            $(".btnCloseMB").click(function(){
+            $("#btnLoginCancel").click(function(){
+                $('#usrPassChng_tbl input').val('');
+                $("#cover").fadeOut(500);
+                $("#usrPassChng").fadeOut(500);
                 leftPanSelection($("#usrPass"));
-                hidePopup($(this).parent());
             });
         }
 
@@ -146,12 +152,6 @@
             selfLoadData();
             $('.usr_field').prop('disabled', true);
             $("button.usr_field").fadeOut(500);
-        }
-
-        function hidePopup(element) {
-            element.hide();
-            $(".message").html('');
-            $(".cover").hide();
         }
 
     </script>
@@ -244,18 +244,47 @@
     <!-- ############################################################### -->
     <!-- ################## DIÁLOGOS & POPUPS ########################## -->
 
+    <div class="msgBox" id="usrPassChng">
+        <div class="msgTop">
+            <span class="msgTl">Usuario & Contraseña</span>
+        </div>
+        <table id="usrPassChng_tbl" border="0" align="center">
+            <tr>
+                <td align="left"><label>Contraseña Actual<br/><input id="oldPass" maxlength="20" size="20" type="password"></label></td>
+            </tr>
+            <tr><td><hr/></td></tr>
+            <tr>
+                <td align="left"><label>Nuevo Usuario<br/><input id="newUsr" maxlength="20" size="20"/></label></td>
+            </tr>
+            <tr>
+                <td align="left"><label>Nueva Contraseña<br/><input id="newPass" maxlength="20" size="20" type="password"></label></td>
+            </tr>
+            <tr>
+                <td align="left"><label>Repetir Contraseña<br/><input id="newPass2" maxlength="20" size="20" type="password"></label></td>
+            </tr>
+        </table>
+        <div class="msgFooter">
+            <button id="btnLoginChange">Guardar</button>
+            <button id="btnLoginCancel" class="btn_negativo">Cancelar</button>
+        </div>
+    </div>
+
+
     <div id="cover"></div>
+
+    <div id="wait">
+        <img src="/img/waiting.gif"/>
+    </div>
 
     <div class="msgBox" id="msgConfirmar">
         <div class="msgTop">
-            <span class="msgTl">
-            </span>
+            <span class="msgTl"></span>
         </div>
         <span class="msgTxt">
         </span>
-        <div class="msgBottom">
+        <div class="msgFooter">
             <button class="btnSI"></button>
-            <button class="btnNO"></button>
+            <button class="btnNO btn_negativo"></button>
         </div>
     </div>
 

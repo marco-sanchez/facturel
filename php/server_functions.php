@@ -139,7 +139,7 @@ function msgJS ($msg){
 }
 
 function guardar_datos($datos, $tabla){
-    if ($tabla == 'usuarios'){
+    if ($tabla == 'usuarios' && $datos['usuario']){
         $datos['usuario'] = ecrypt($datos['usuario']);
         $datos['password'] = ecrypt($datos['password']);
     }

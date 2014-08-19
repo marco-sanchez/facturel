@@ -12,6 +12,21 @@
     opacity: .40;
 }
 
+#wait{
+    display: none;
+
+    position: absolute;
+    top: 35%;
+    left: -10px;
+
+    width: 100%;
+    text-align: center;
+
+    background-color: orange;
+    border:2px solid #000000;
+    z-index: 1500;
+}
+
 .msgBox{
     /* CENTER DIV IN SCREEN
     margin-left = -(width / 2);
@@ -45,6 +60,7 @@
     text-align: left;
     padding: 3px;
     color: white;
+    background-color: black;
     font-size: 18px;
     font-weight: bold;
 }
@@ -67,6 +83,7 @@
     text-align: right;
     padding: 10px;
     color: white;
+    background-color: black;
     font-size: 18px;
     font-weight: normal;
 }
@@ -74,14 +91,14 @@
 #msgConfirmar{
     border: solid 5px orange;
 }
-#msgConfirmar .msgTop, #msgConfirmar .msgFooter{
-    background-color: #dd7f00;
-}
+    #msgConfirmar .msgTop, #msgConfirmar .msgFooter{
+        background-color: #dd7f00;
+    }
 
 #msgError{
     border: solid 5px red;
 }
 
-#msgError .msgTop, #msgError .msgFooter{
-    background-color: darkred;
-}
+    #msgError .msgTop, #msgError .msgFooter{
+        background-color: darkred;
+    }

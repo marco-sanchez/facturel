@@ -3,4 +3,8 @@ PASS: 0b8fb3bebf332d0307cf61352e487f5f (sample)
 
 PENDIENTES:
 
--
+- Cambiar el popup para cambio de USR y PASS:
+    - al presionar "Cambiar usuario & contraseña" se deben ocultar los <input class"usr_field">
+      y mostrar los <input class="login_chng">
+    - el boton Guadar debe verificar si los <input class="login_chng"> tienen valores o no
+      antes de enviar datos a cambiar.
