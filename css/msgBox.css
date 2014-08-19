@@ -70,7 +70,7 @@
     text-align: left;
     top: 20%;
     left: 2px;
-    width: 100%;
+    width: 98%;
     padding: 3px;
     font-size: 14px;
 }
@@ -102,3 +102,8 @@
     #msgError .msgTop, #msgError .msgFooter{
         background-color: darkred;
     }
+
+.btnSI,
+.btnNO{
+    font-size: 12px;
+}

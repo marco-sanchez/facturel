@@ -52,108 +52,130 @@
 
         function selfActions(){
             $("#editar").click(function(){
-
-                leftPanSelection($(this));
-
-                if ($("#editar").hasClass('selected')){
+                if ($(this).hasClass('selected')){
+                    $('.usr_field').prop('disabled', true);
+                    $("#usrButtons").fadeOut(500);
+                    selfLoadData();
+                } else {
                     $('.usr_field').prop('disabled', false);
-                    $("button.usr_field").fadeIn(500);
-                } else cancelEdit();
+                    $("#usrButtons").fadeIn(500);
+                    if ($("#usrPass").hasClass('selected')){
+                        $("#usrPassChange").hide();
+                        $(".usrData").fadeIn(500);
+                        leftPanSelection($("#usrPass"));
+                    }
+                }
+                leftPanSelection($(this));
             });
 
             $("#usrPass").click(function(){
-                if ($("#editar").hasClass('selected'))
-                    cancelEdit();
+                if ($(this).hasClass('selected')){
+                    $("#usrPassChange").hide();
+                    $("#usrButtons").hide();
+                    $(".usrData").fadeIn(500);
+                } else {
+                    $(".usrData").hide();
+                    $("#usrPassChange").fadeIn(500);
+                    $("#usrButtons").fadeIn(500);
+                    selfLoadData();
+                    if ($("#editar").hasClass('selected')){
+                        $('.usr_field').prop('disabled', true);
+                        leftPanSelection($("#editar"));
+                    }
+                }
                 leftPanSelection($(this));
-                $("#cover").fadeIn(500);
-                $("#usrPassChng").fadeIn(500);
             });
 
-            $("#btnUsrGuardar").click(function(){
-                var usuario_actual = leer_datos('usuarios', <?php echo $_SESSION['current_user']['id']?>);
-                var datos = {
-                    id: usuario_actual['id'],
-                    activo: $("#usr_activo").is(':checked'),
-                    grupo: $("#usr_grupo").val(),
-                    nombres: $("#usr_nombres").val(),
-                    apPat: $("#usr_apPat").val(),
-                    apMat: $("#usr_apMat").val(),
-                    docId: $("#usr_doc").val(),
-                    telefonos: $("#usr_tel").val(),
-                    email: $("#usr_email").val(),
-                    direccion: $("#usr_dir").val(),
-                    comentarios: $("#usr_coms").val()
-                };
-                if (!datos['activo']){
-                    msgConfirmar("Editar Datos", "Al desactivar su usuario la sesión deberá cerrarse.",
-                        "Cerrar Sesión", "Cancelar",
-                        function(){
-                            guardar_datos(datos, "usuarios");
-                            location.reload(true);
-                        },
-                        function(){}
-                    )
-                } else {
-                    datos['activo'] = 1;
-                    guardar_datos(datos, "usuarios");
-                    cancelEdit();
+            $("#btnGuardar").click(function(){
+                if ($("#editar").hasClass('selected')){
+                    saveData();
+                } else if ($("#usrPass").hasClass('selected')){
+                    saveLogin();
                 }
             });
 
-            $("#btnUsrCancelar").click(function(){
-                cancelEdit();
-            });
-
-            $("#btnLoginChange").click(function(){
-                var oldPass = $('#oldPass').val();
-                var newUsr = $("#newUsr").val();
-                var newPass = $("#newPass").val();
-                var newPass2 = $("#newPass2").val();
-                var usuario_actual = leer_datos('usuarios', <?php echo $_SESSION['current_user']['id']?>);
-                var datos = {
-                    id: usuario_actual['id'],
-                    usuario: newUsr,
-                    password: newPass
-                };
-
-                if (evalLogin (usuario_actual['usuario'], oldPass, 'chPass')){
-                    if (newUsr != ''){
-                        if (newPass == newPass2 && newPass != ''){
-                            msgConfirmar("Usuario & Contraseña", "La sesión actual se cerrará.",
-                                "Cerrar Sesión", "Cancelar",
-                                function(){
-                                    guardar_datos(datos, "usuarios");
-                                    salir();
-                                },
-                                function(){
-                                    $('#usrPassChng_tbl input').val('');
-                                    $("#cover").fadeOut(500);
-                                    $("#usrPassChng").fadeOut(500);
-                                    leftPanSelection($("#usrPass"));
-                                }
-                            )
-                        } else msgError("Error en datos", "Nueva contraseña no coincide o los campos están vacíos");
-                    } else msgError("Error en datos", "Inserte nuevo usuario o repita el usuario actual");
-                } else msgError("Error en datos", "'Contraseña Actual' no es válida");
-            });
-
-            $("#btnLoginCancel").click(function(){
-                $('#usrPassChng_tbl input').val('');
-                $("#cover").fadeOut(500);
-                $("#usrPassChng").fadeOut(500);
-                leftPanSelection($("#usrPass"));
-            });
+            $("#btnCancelar").click(function(){
+                if ($("#editar").hasClass('selected')){
+                    $('.usr_field').prop('disabled', true);
+                    $("#usrButtons").fadeOut(500);
+                    selfLoadData();
+                    leftPanSelection($("#editar"));
+                } else if ($("#usrPass").hasClass('selected')){
+                    $("#usrPassChange").hide();
+                    $("#usrButtons").hide();
+                    $(".usrData").fadeIn(500);
+                    leftPanSelection($("#usrPass"));
+                }
+            })
         }
 
-        function cancelEdit() {
-            if ($("#editar").hasClass('selected')){
+        function saveData(){
+            var usuario_actual = leer_datos('usuarios', <?php echo $_SESSION['current_user']['id']?>);
+            var datos = {
+                id: usuario_actual['id'],
+                activo: $("#usr_activo").is(':checked'),
+                grupo: $("#usr_grupo").val(),
+                nombres: $("#usr_nombres").val(),
+                apPat: $("#usr_apPat").val(),
+                apMat: $("#usr_apMat").val(),
+                docId: $("#usr_doc").val(),
+                telefonos: $("#usr_tel").val(),
+                email: $("#usr_email").val(),
+                direccion: $("#usr_dir").val(),
+                comentarios: $("#usr_coms").val()
+            };
+            if (!datos['activo']){
+                msgConfirmar("Editar Datos", "Al desactivar su usuario la sesión deberá cerrarse.",
+                    "Cerrar Sesión", "Cancelar",
+                    function(){
+                        guardar_datos(datos, "usuarios");
+                        location.reload(true);
+                    },
+                    function(){}
+                )
+            } else {
+                datos['activo'] = 1;
+                guardar_datos(datos, "usuarios");
+                $('.usr_field').prop('disabled', true);
+                $("#usrButtons").fadeOut(500);
+                selfLoadData();
                 leftPanSelection($("#editar"));
             }
-            selfLoadData();
-            $('.usr_field').prop('disabled', true);
-            $("button.usr_field").fadeOut(500);
         }
 
+        function saveLogin() {
+            var oldPass = $('#oldPass').val();
+            var newUsr = $("#newUsr").val();
+            var newPass = $("#newPass").val();
+            var newPass2 = $("#newPass2").val();
+            var usuario_actual = leer_datos('usuarios', <?php echo $_SESSION['current_user']['id']?>);
+            var datos = {
+                id: usuario_actual['id'],
+                usuario: newUsr,
+                password: newPass
+            };
+
+            if (evalLogin (usuario_actual['usuario'], oldPass, 'chPass')){
+                if (newUsr != ''  && newPass != ''){
+                    if (newPass == newPass2){
+                        msgConfirmar("Usuario & Contraseña",
+                            "Al realizar este cambio la sesión actual se cerrará.",
+                            "Cerrar Sesión", "Cancelar",
+                            function(){
+                                guardar_datos(datos, "usuarios");
+                                $("#salir").click();
+                            },
+                            function(){}
+                        );
+                    } else msgError("Error en datos",
+                                    "Nueva contraseña no coincide.");
+                } else msgError("Error en datos",
+                                "Hay campos en blanco.<br/>" +
+                                "Si desea conservar un dato, " +
+                                "deberá reescribirlo en el campo correspondiente.");
+            } else msgError("Error en datos",
+                            "'Contraseña Actual' no es válida.");
+        }
     </script>
 </head>
 
@@ -187,14 +209,14 @@
     <div id="div_left">
         <div class="vertical_menu">
             <ul>
-                <li><a class="round_corners" href="#" id="editar">Editar datos personales</a></li>
-                <li><a class="round_corners" href="#" id="usrPass">Cambiar usuario-contraseña</a></li>
+                <li><a class="round_left" href="#" id="editar">Editar datos personales</a></li>
+                <li><a class="round_left" href="#" id="usrPass">Cambiar usuario-contraseña</a></li>
             </ul>
         </div>
     </div>
 
     <div id="div_content" class="">
-        <table class="usr_table" border="0" align="left">
+        <table class="usrData usr_table" border="0" align="left">
             <tr>
                 <td align="left">
                     <div class="chkSlide">
@@ -211,7 +233,7 @@
             </tr>
         </table>
         <br/><br/><br/><br/>
-        <table class="usr_table" border="0" align="center">
+        <table class="usrData usr_table" border="0" align="center">
             <tr>
                 <td align="left"><label>Nombres<br/><input class="usr_field" id="usr_nombres" maxlength="100" size="23" disabled/></label></td>
                 <td align="left"><label>Apellido Paterno<br/><input class="usr_field" id="usr_apPat" maxlength="100" size="23" disabled/></label></td>
@@ -226,12 +248,27 @@
                 <td align="left"><label>Dirección<br/><textarea class="usr_field" id="usr_dir" cols="23" rows="4" disabled></textarea></label></td>
                 <td align="left" colspan="2"><label>Comentarios<br/><textarea class="usr_field" id="usr_coms" cols="49" rows="4" disabled></textarea></label></td>
             </tr>
+        </table>
+        <table id="usrPassChange" class="usr_table" border="0" align="center">
+            <tr>
+                <td align="center" colspan="3">
+                    <label>Contraseña Actual<br/><input id="oldPass" maxlength="20" size="20" type="password"></label>
+                    <hr/>
+                </td>
+            </tr>
+            <tr>
+                <td align="left"><label>Nuevo Usuario<br/><input id="newUsr" maxlength="20" size="20"/></label></td>
+                <td align="left"><label>Nueva Contraseña<br/><input id="newPass" maxlength="20" size="20" type="password"></label></td>
+                <td align="left"><label>Repetir Contraseña<br/><input id="newPass2" maxlength="20" size="20" type="password"></label></td>
+            </tr>
+        </table>
+        <table id="usrButtons" class="usr_table" border="0" align="center">
             <tr>
                 <td align="center" colspan="3">
                     <br/>
-                    <button class="usr_field" id="btnUsrGuardar">Guardar</button>
+                    <button id="btnGuardar">Guardar</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="usr_field btn_negativo" id="btnUsrCancelar">Cancelar</button>
+                    <button id="btnCancelar" class="btn_negativo">Cancelar</button>
                 </td>
             <tr>
         </table>
@@ -243,32 +280,6 @@
 
     <!-- ############################################################### -->
     <!-- ################## DIÁLOGOS & POPUPS ########################## -->
-
-    <div class="msgBox" id="usrPassChng">
-        <div class="msgTop">
-            <span class="msgTl">Usuario & Contraseña</span>
-        </div>
-        <table id="usrPassChng_tbl" border="0" align="center">
-            <tr>
-                <td align="left"><label>Contraseña Actual<br/><input id="oldPass" maxlength="20" size="20" type="password"></label></td>
-            </tr>
-            <tr><td><hr/></td></tr>
-            <tr>
-                <td align="left"><label>Nuevo Usuario<br/><input id="newUsr" maxlength="20" size="20"/></label></td>
-            </tr>
-            <tr>
-                <td align="left"><label>Nueva Contraseña<br/><input id="newPass" maxlength="20" size="20" type="password"></label></td>
-            </tr>
-            <tr>
-                <td align="left"><label>Repetir Contraseña<br/><input id="newPass2" maxlength="20" size="20" type="password"></label></td>
-            </tr>
-        </table>
-        <div class="msgFooter">
-            <button id="btnLoginChange">Guardar</button>
-            <button id="btnLoginCancel" class="btn_negativo">Cancelar</button>
-        </div>
-    </div>
-
 
     <div id="cover"></div>
 

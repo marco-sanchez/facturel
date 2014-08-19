@@ -5,7 +5,11 @@ input[type=checkbox] {
 }
 
 .chkSlide input[type=checkbox]:disabled + label {
-    background: gray;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(grey), to(black)); /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient(top, grey, black); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(top, grey, black); /* Firefox 3.6+ */
+    background: -ms-linear-gradient(top, grey, black); /* IE 10 */
+    background: -o-linear-gradient(top, grey, black); /* Opera 11.10+ */
 }
 
 .chkSlide {
@@ -70,11 +74,11 @@ input[type=checkbox] {
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.3);
     background: #fcfff4;
 
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(grey), to(black)); /* Safari 4-5, Chrome 1-9 */
-    background: -webkit-linear-gradient(top, grey, black); /* Safari 5.1, Chrome 10+ */
-    background: -moz-linear-gradient(top, grey, black); /* Firefox 3.6+ */
-    background: -ms-linear-gradient(top, grey, black); /* IE 10 */
-    background: -o-linear-gradient(top, grey, black); /* Opera 11.10+ */
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(lightgrey), to(black)); /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient(top, lightgreygrey, black); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(top, lightgrey, black); /* Firefox 3.6+ */
+    background: -ms-linear-gradient(top, lightgrey, black); /* IE 10 */
+    background: -o-linear-gradient(top, lightgrey, black); /* Opera 11.10+ */
 }
 
 .chkSlide label:after {

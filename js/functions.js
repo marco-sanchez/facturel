@@ -129,9 +129,13 @@ function set_defaults(){
 
     });
     $("#salir").click(function(){
-        //Setting exp. date of "PHP session cookie" to year zero
-        document.cookie = 'PHPSESSID=; expires=Mon, 01-Jan-00 00:00:01 GMT;';
-        window.location = 'index.php';
+        salir();
     });
+}
+
+function salir() {
+    //Setting exp. date of "PHP session cookie" to year zero
+    document.cookie = 'PHPSESSID=; expires=Mon, 01-Jan-00 00:00:01 GMT;';
+    window.location = 'index.php';
 }
 

@@ -58,6 +58,7 @@
 .vertical_menu ul {
     position: absolute;
     right: 0;
+    width: 95%;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -72,9 +73,8 @@
 .vertical_menu ul li a:link,
 .vertical_menu ul li a:visited {
     display: block;
-    /*width: 120px;*/
-    border: 2px solid gray;
-    background: black;
+    border: 2px solid black;
+    background: #2b2b2b;
 
     color: white;
     font-size: 14px;
@@ -102,6 +102,6 @@
 .vertical_menu ul li a.selected{
     border-color: orange;
     color: orange;
-    background: #2b2b2b;
+    background: black;
     cursor: pointer;
 }
