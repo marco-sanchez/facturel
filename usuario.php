@@ -23,7 +23,7 @@
         });
 
         function selfLoadData(){
-            $('#usr_grupo').empty();
+            $('#usr_grupo').empty(); // this is to avoid duplicates
             var grupos = leer_datos('usuarios_grupos');
             _.each(grupos, function(grupo){
                 $('#usr_grupo').append($('<option>', {
