@@ -17,7 +17,7 @@ ob_start();
 
         <script src="js/libraries/jquery-2.1.1.min.js"></script>
         <script src="js/libraries/crypt.js"></script>
-        <script src="js/functions.js"></script>
+
         <script>
             $(document).ready(function(){
                 $("#btnLogin").click(function(){
