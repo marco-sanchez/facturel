@@ -6,6 +6,7 @@ ob_start();
 <!DOCTYPE html>
 <?php
 include (__DIR__."/php/server_functions.php");
+include (__DIR__."/php/JS_functions.php");
 verify_usr();
 ?>
 <html>
@@ -18,7 +19,26 @@ verify_usr();
     <script>
         $(document).ready(function(){
             set_defaults();
+            selfLoadData();
         });
+
+        function selfLoadData(){
+            var cli_personas = leer_datos("cli_personas");
+            var datos, nom, tel, nit;
+            _.each(cli_personas, function(cli_persona){
+                console.log("cli_persona", cli_persona);
+                nom = cli_persona['apPat'] + " " + cli_persona['apMat'] + " " + cli_persona['nombres'];
+                tel = cli_persona['telefono'];
+                nit = cli_persona['nit'];
+                datos =
+                    "<tr>" +
+                        "<td>" + nom + "</td>" +
+                        "<td>" + tel + "</td>" +
+                        "<td>" + nit + "</td>" +
+                    "</tr>";
+                $("#cli_personas tbody").append(datos);
+            });
+        }
     </script>
 </head>
 
@@ -52,8 +72,8 @@ verify_usr();
 <div id="div_left">
     <div class="vertical_menu">
         <ul>
-            <li><a class="round_left" href="#" id="op1">Opción 1</a></li>
-            <li><a class="round_left" href="#" id="op2">Opción 2</a></li>
+            <li><a class="round_left" href="#" id="opPersonas">Personas</a></li>
+            <li><a class="round_left" href="#" id="opEmpresas">Empresas</a></li>
         </ul>
     </div>
 </div>
@@ -65,47 +85,16 @@ verify_usr();
             <li><a class="round_right" href="#">Individual</a></li>
         </ul>
     </div>
-    <table class="zebra">
-        <caption>Mi Tabla - Lista</caption>
+    <table id="cli_personas" class="listado">
+        <caption>Clientes Persona</caption>
         <thead>
         <tr>
-            <th>Date</th>
-            <th>Start time</th>
-            <th>End time</th>
-            <th>Name</th>
+            <th>Nombre</th>
+            <th>NIT</th>
+            <th>Teléfono</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>02.06.2010</td>
-            <td>10:00</td>
-            <td>12:00</td>
-            <td>Cleaning</td>
-        </tr>
-        <tr>
-            <td>02.06.2010</td>
-            <td>12:00</td>
-            <td>15:00</td>
-            <td>Training</td>
-        </tr>
-        <tr>
-            <td>02.06.2010</td>
-            <td>15:00</td>
-            <td>17:00</td>
-            <td>Rest</td>
-        </tr>
-        <tr>
-            <td>02.06.2010</td>
-            <td>17:00</td>
-            <td>21:00</td>
-            <td>Work</td>
-        </tr>
-        <tr>
-            <td>02.06.2010</td>
-            <td>21:00</td>
-            <td>07:00</td>
-            <td>Sleep</td>
-        </tr>
         </tbody>
     </table>
 </div>

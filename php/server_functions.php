@@ -145,17 +145,17 @@ function guardar_datos($datos, $tabla){
     }
     $keys = array_keys($datos);
     $i = 0;
-    if (isset ($datos['id'])) { # TRUE: Editar registro existente
+    if (isset ($datos['id'])) { # IF TRUE: Editar registro existente
         foreach ($datos as $dato){
             if ($i > 0){
-                $SQL = "UPDATE ".$tabla." SET ".$keys[$i]." = '".$dato."' WHERE id = ".$datos['id'];
+                $SQL = "UPDATE ".$tabla." SET ".$keys[$i]." = '".$dato."', fecha_cambio = '".date("Y-m-d H:i:s")."', uid = '".$datos['uid']."' WHERE id = ".$datos['id'];
                 SQL_exec($SQL);
                 $sqlRes = SQL_exec($SQL);
                 echo json_encode($sqlRes);
             }
             $i++;
         }
-    } else { # FALSE: Insertar nuevo registro
+    } else { # IF FALSE: Insertar nuevo registro
         $cols = "";
         foreach ($keys as $col){
             if ($i == 0) $cols = $col;

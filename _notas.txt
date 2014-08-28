@@ -8,3 +8,15 @@ PENDIENTES:
       y mostrar los <input class="login_chng">
     - el boton Guadar debe verificar si los <input class="login_chng"> tienen valores o no
       antes de enviar datos a cambiar.
+
+COMANDOS ÚTILES:
+
+- MySQL: orden de columnas en tabla
+  Al agregar nuevas columnas en la interfaz de phpMyAdmin se puede seleccionar el lugar
+  Ejemplo:
+        ALTER TABLE `usuarios_grupos`
+        ADD `fecha_registro` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `id`,
+        ADD `fecha_cambio` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `fecha_registro`,
+        ADD `uid` INT NOT NULL AFTER `fecha_cambio`
+- MYSQL: cambiar nombre de columna
+        ALTER TABLE tabla CHANGE columna nuevo_nombre <type>;

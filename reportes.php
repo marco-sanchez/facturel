@@ -6,6 +6,7 @@ ob_start();
 <!DOCTYPE html>
 <?php
 include (__DIR__."/php/server_functions.php");
+include (__DIR__."/php/JS_functions.php");
 verify_usr();
 ?>
 <html>

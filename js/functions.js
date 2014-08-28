@@ -73,6 +73,9 @@ function leftPanSelection (elemento){
 }
 
 function guardar_datos(datos, tabla){
+    var cookies = $.cookie("SESSION");
+    console.log("cookies", cookies);
+
     if (tabla == 'usuarios' && datos['usuario']){
         datos['usuario'] = $.md5(datos['usuario']);
         datos['password'] = $.md5(datos['password']);

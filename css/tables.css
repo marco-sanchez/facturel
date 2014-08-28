@@ -1,6 +1,8 @@
 @charset "utf-8";
 
 .list_table table{
+    width: 99%;
+
     border-collapse: collapse;
     border-spacing: 0;
 
@@ -8,43 +10,41 @@
     box-shadow:  0 2px 1px 5px rgba(242, 242, 242, 0.1);
 }
 
-.zebra {
+.listado {
     border: 1px solid grey;
 }
 
-.zebra td {
+.listado th, .listado th:hover {
+    border: 1px solid grey;
+    padding: 10px;
+    background: black;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(grey), to(black)); /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient(top, grey, black); /* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(top, grey, black); /* Firefox 3.6+ */
+    background: -ms-linear-gradient(top, grey, black); /* IE 10 */
+    background: -o-linear-gradient(top, grey, black); /* Opera 11.10+ */
+    color:white !important;
+}
+
+.listado td {
     border-left: 1px solid grey;
     border-top: 1px solid grey;
     padding: 10px;
-    text-align: left;
+    font-size: 16px;
 }
 
-.zebra th, .zebra th:hover {
-    border: 1px solid grey;
-    padding: 20px;
-    background-color: black !important;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(grey), to(black)) !important;
-    background-image: -webkit-linear-gradient(top, grey, black) !important;
-    background-image:    -moz-linear-gradient(top, grey, black) !important;
-    background-image:     -ms-linear-gradient(top, grey, black) !important;
-    background-image:      -o-linear-gradient(top, grey, black) !important;
-    background-image:         linear-gradient(top, grey, black) !important;
-    color:white !important;
-    font-weight:normal;
-}
-
-.zebra tbody tr:nth-child(even) {
+.listado tbody tr:nth-child(even) {
     background: black !important;
     color:white;
 }
 
-.zebra tr:hover *{
+.listado tr:hover *{
     background-color: rgba(100, 50, 0, 0.5);
     color: orange;
     cursor: pointer;
 }
 
-.zebra tr {
+.listado tr {
     background: #252525;
     color:white;
 }
